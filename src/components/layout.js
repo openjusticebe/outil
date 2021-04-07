@@ -1,11 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Header from "./header"
 import { useStaticQuery, graphql } from "gatsby"
 // import {NotificationContainer, NotificationManager} from 'react-notifications';
 
-
-import "../styles/main.scss"
 import {Link, useI18next} from 'gatsby-plugin-react-i18next';
+import "../styles/main.scss"
+import "../styles/reset.scss"
 
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`
@@ -22,18 +23,7 @@ const Layout = ({ children }) => {
 
     return (
         <>
-        {
-            //<Header siteTitle={data.site.siteMetadata.title} />
-        }
-        <ul className="languages">
-            {languages.map((lng) => (
-                <li key={lng}>
-                <Link to={originalPath} language={lng}>
-                {lng}
-                </Link>
-                </li>
-            ))}
-        </ul>
+        <Header siteTitle={data.site.siteMetadata.title} />
         <div
         style={{
             margin: `0 auto`,

@@ -1,0 +1,31 @@
+@import "./_variables";
+
+header.main-header {
+    background-color: $main_color;
+}
+
+ul.languages {
+    margin-top:-2rem;
+}
+
+ul.languages a {
+    text-transform:uppercase;
+    color: $sec_light_color;
+    font-size:1rem;
+    padding:0 .2rem;
+    border-bottom: 3px solid transparent;
+}
+
+ul.languages a.selected {
+    border-bottom: 3px dotted $sec_light_color;
+}
+
+ul.languages a:hover {
+    color: $sec_color;
+    border-color:$sec_color;
+    text-decoration:none;
+}
+
+header .navbar {
+    padding:0;
+}

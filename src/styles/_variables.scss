@@ -1,0 +1,23 @@
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1280px
+) !default;
+
+// Mauve
+$mauve : #5d3985;
+$mauve_clair : #c8bedc;
+// Turquoise
+$turquoise : #69b3b3;
+$turquoise_clair : #bedbdc;
+// Sombre
+$sombre : #303131;
+$blank : #f6f6f6;
+$dark: $sombre;
+$accent : #ea5455;
+
+$main_color: $mauve;
+$main_light_color: $mauve_clair;
+$sec_color : $turquoise;
+$sec_light_color : $turquoise_clair;
