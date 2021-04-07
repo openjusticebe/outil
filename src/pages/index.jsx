@@ -18,6 +18,8 @@ const IndexPage = () => {
             default:
                 if (isLoggedIn()) {
                     logcheck(() => navigate(`/login`));
+                } else {
+                    navigate(`/login`);
                 }
                 break;
         }
