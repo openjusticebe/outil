@@ -1,4 +1,4 @@
-const {defaultLanguage} = require('./languages');
+const {defaultLanguage, languages} = require('./languages');
 
 process.env.NODE_ENV = 'test';
 
@@ -12,6 +12,7 @@ module.exports = {
         nsSeparator: null,
         keyAsDefaultValue: [defaultLanguage],
         useI18nextDefaultValue: [defaultLanguage],
+        locales: languages,
         discardOldKeys: true,
         defaultNS: 'translation',
         outputPath: 'src/locales/{{locale}}/{{ns}}.json',

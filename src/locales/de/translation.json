@@ -1,4 +1,10 @@
 {
-    "index_hello": "Guten tag",
-    "Comment ça va ?": "Wie geht es ?"
+  "Comment ça va ?": "Wie geht es ?",
+  "Connexion utilisateur": "Anmeldung",
+  "Email": "Email",
+  "Home": "",
+  "Mot de passe": "Password",
+  "Mot de passe oublié": "Password vergessen",
+  "Se connecter": "Verbindung",
+  "index_hello": "Guten tag"
 }

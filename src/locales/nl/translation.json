@@ -1,4 +1,10 @@
 {
-    "index_hello": "Goeiedag",
-    "Comment ça va ?": "Hoe gaat het ?"
+  "Comment ça va ?": "Hoe gaat het ?",
+  "Connexion utilisateur": "Gebruiker login",
+  "Email": "E-mail",
+  "Home": "",
+  "Mot de passe": "Wachtwoord",
+  "Mot de passe oublié": "Wachtwoord verloren",
+  "Se connecter": "Inloggen",
+  "index_hello": "Goeiedag"
 }

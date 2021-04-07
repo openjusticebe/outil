@@ -1,3 +1,10 @@
 {
-    "index_hello": "Bonjour"
+  "Comment ça va ?": "Comment ça va ?",
+  "Connexion utilisateur": "Connexion utilisateur",
+  "Email": "Email",
+  "Home": "Home",
+  "Mot de passe": "Mot de passe",
+  "Mot de passe oublié": "Mot de passe oublié",
+  "Se connecter": "Se connecter",
+  "index_hello": "Bonjour"
 }
