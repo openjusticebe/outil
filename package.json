@@ -28,8 +28,8 @@
     "use-query-params": "^1.2.2"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
     "babel-plugin-i18next-extract": "^0.8.3",
     "babel-preset-gatsby": "^1.2.0"
   },
@@ -41,7 +41,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "extract": "yarn run babel --config-file ./babel-extract.config.js -o tmp/chunk.js 'src/**/*.{js, jsx}' && rm -rf tmp",
+    "extract": "yarn run babel --config-file ./babel-i18next-extract.config.js -o tmp/chunk.js 'src/**/*.{js,jsx}' && rm -rf tmp",
     "translate": "yarn run extract && node translate.js"
   }
 }
