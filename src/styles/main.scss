@@ -2,15 +2,19 @@
 @import "./_variables";
 
 html {
-    font-family: sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 }
 
 body {
+    font-family: $main_font;
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+button, a {
+    font-family: $main_font;
 }
 
 h1 {

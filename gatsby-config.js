@@ -110,15 +110,24 @@ module.exports = {
             fonts: [
               {
                 family: `Major Mono Display`,
+                formats: [ "woff", "woff2" ],
                 variants: [`400`]
               },
               {
                 family: `Roboto Mono`,
-                variants: [`400`, `700`]
+                formats: [ "woff", "woff2" ],
+                variants: ['100', '400', '700']
               },
               {
                 family: `Roboto`,
+                formats: [ "woff", "woff2" ],
+                variants: ['200', '400', '700'],
                 variants: [`thin`, `light`]
+              },
+              {
+                family: `Mulish`,
+                variants: ['200', '400', '900'],
+                formats: [ "woff", "woff2" ],
               },
             ],
           },

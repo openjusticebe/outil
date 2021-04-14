@@ -28,10 +28,10 @@ const UserMenu = ({ isAdmin }) => {
               ) : (
                   <>
                   <li className="nav-item mx-2">
-                      <Link to="/subscribe" className="nav-link btn btn-outline-ojsec px-5"><Trans>Inscription</Trans></Link>
+                      <Link to="/subscribe" className="nav-link btn btn-outline-ojsec px-4"><Trans>Inscription</Trans></Link>
                   </li>
                   <li className="nav-item mx-2">
-                      <Link to="/login" className="nav-link btn btn-ojsec px-5"><Trans>Connexion</Trans></Link>
+                      <Link to="/login" className="nav-link btn btn-ojsec px-4"><Trans>Connexion</Trans></Link>
                   </li>
                   </>
             )}

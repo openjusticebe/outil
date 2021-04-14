@@ -6,6 +6,12 @@ header.main-header {
     flex-direction:row nowrap;
     justify-content:space-between;
 }
+a.home {
+    margin:0;
+    padding:0;
+    margin-left:.5rem;
+    margin-top:-1rem;
+}
 
 ul.languages {
     display:flex;
@@ -19,6 +25,7 @@ ul.languages li {
 
 ul.languages a {
     font-family:$monospace-font;
+    font-weight:700;
     text-transform:uppercase;
     color: $main_color;
     font-size:1rem;
@@ -68,4 +75,22 @@ ul.userOptions {
     list-style-type:none;
     display:flex;
     flex-direction:row;
+}
+
+ul.navigation {
+    list-style-type:none;
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-end;
+    flex-grow:1;
+}
+
+ul.navigation a {
+    color:$main_color;
+    font-family: $main_font;
+    border-bottom: 2px solid transparent;
+}
+
+ul.navigation a:hover {
+    border-color:$main_color;
 }
