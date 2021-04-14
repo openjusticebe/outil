@@ -1,31 +1,71 @@
 @import "./_variables";
 
 header.main-header {
-    background-color: $main_color;
+    background-color: $background;
+    display:flex;
+    flex-direction:row nowrap;
+    justify-content:space-between;
 }
 
 ul.languages {
-    margin-top:-2rem;
+    display:flex;
+    flex-direction:column;
+    list-style-type:none;
+}
+
+ul.languages li {
+    margin:0;padding:0;
 }
 
 ul.languages a {
+    font-family:$monospace-font;
     text-transform:uppercase;
-    color: $sec_light_color;
+    color: $main_color;
     font-size:1rem;
     padding:0 .2rem;
-    border-bottom: 3px solid transparent;
+    border: 3px solid transparent;
+    border-bottom-color: $sec_light_color;
+}
+
+ul.languages li:last-child a {
+    border-bottom-width:0;
 }
 
 ul.languages a.selected {
-    border-bottom: 3px dotted $sec_light_color;
+    background-color:$sec_light_color;
 }
 
 ul.languages a:hover {
     color: $sec_color;
     border-color:$sec_color;
+    border-style:dotted;
     text-decoration:none;
 }
 
 header .navbar {
     padding:0;
+}
+
+.sub-header-main {
+    position:relative;
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:flex-start;
+    flex-grow:1;
+    align-items:center;
+}
+
+.sub-header-sec {
+    position:relative;
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content:flex-end;
+    flex-grow:0;
+    align-items:center;
+}
+
+ul.userOptions {
+    list-style-type:none;
+    display:flex;
+    flex-direction:row;
 }

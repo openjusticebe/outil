@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import '../styles/header.scss';
 import React from 'react';
 import OJLogo from "../images/openjustice_tq.png"
+import UserMenu from "../components/header_profile"
 
 const Header = ({siteTitle}) => {
     const {languages, originalPath, t} = useI18next();
@@ -10,11 +11,14 @@ const Header = ({siteTitle}) => {
 
     return (
         <header className="main-header">
-            <nav className="navbar navbar-expand-lg">
-            <Link to="/">
-                <img src={ OJLogo } style={{ "width": 190, "height": 'auto' }} alt={ siteTitle }/>
-            </Link>
-                <ul className="navbar-nav languages ml-auto">
+            <nav className="sub-header-main">
+                <Link to="/">
+                    <img src={ OJLogo } style={{ "width": 190, "height": 'auto' }} alt={ siteTitle }/>
+                </Link>
+            </nav>
+            <nav className="sub-header-sec">
+                <UserMenu />
+                <ul className="languages ml-auto">
                     { languages.map((lng) => (
                         <li key={ lng }>
                             <Link to={ originalPath } language={ lng } className={ lng == context.language && "selected"  }>{ lng }</Link>

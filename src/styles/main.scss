@@ -16,3 +16,42 @@ body {
 h1 {
     color:#000;
 }
+
+body {
+	padding: 5px;
+	overflow-x: hidden; /* For Opera */
+	-webkit-box-shadow:
+		inset $sec_color 0 0 0 5px;
+	-moz-box-shadow:
+		inset $sec_color 0 0 0 5px;
+	box-shadow:
+		inset $sec_color 0 0 0 5px;
+}
+
+.btn-ojmain {
+    color: #fff;
+    background-color: $main_color;
+    border-color: $main_color;
+}
+
+.btn-ojsec {
+    color: #fff;
+    background-color: $sec_color;
+    border-color: $sec_color;
+}
+
+.btn-ojsec:hover {
+    color: #fff;
+    background-color: $sec_dark_color;
+    border-color: $sec_dark_color;
+}
+.btn-outline-ojsec {
+    color: $sec_color;
+    border-color: $sec_color;
+}
+
+.btn-outline-ojsec:hover {
+    color: #fff;
+    background-color: $sec_color;
+    border-color: $sec_color;
+}

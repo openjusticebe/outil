@@ -9,7 +9,8 @@ $container-max-widths: (
 $mauve : #5d3985;
 $mauve_clair : #c8bedc;
 // Turquoise
-$turquoise : #69b3b3;
+// $turquoise : #69b3b3;
+$turquoise : #17B5B4;
 $turquoise_clair : #bedbdc;
 // Sombre
 $sombre : #303131;
@@ -20,4 +21,8 @@ $accent : #ea5455;
 $main_color: $mauve;
 $main_light_color: $mauve_clair;
 $sec_color : $turquoise;
+$sec_dark_color: #127372;
 $sec_light_color : $turquoise_clair;
+$background : #fff;
+
+$monospace-font: 'Roboto Mono', monospace;
