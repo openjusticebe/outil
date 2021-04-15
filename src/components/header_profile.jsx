@@ -11,7 +11,10 @@ const UserMenu = ({ isAdmin }) => {
         <ul className="userOptions">
               { isLoggedIn() ? (
                   <>
-                  <li className="nav-item"> { usr['username'] } </li>
+                  { 
+                      // <li className="nav-item"> { usr['username'] } </li> --> 
+                  }
+
                   { usr.admin && isAdmin && 
                         <li className="nav-item mx-2">
                             <Link to="/" className="nav-link btn btn-outline-dark">Outil</Link>

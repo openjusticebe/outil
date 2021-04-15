@@ -17,8 +17,14 @@ button, a {
     font-family: $main_font;
 }
 
+
 h1 {
     color:#000;
+    font-family: $main_font;
+}
+
+h1, h2, h3, h4, h5, div, p {
+    font-family: $main_font;
 }
 
 body {
@@ -30,6 +36,11 @@ body {
 		inset $sec_color 0 0 0 5px;
 	box-shadow:
 		inset $sec_color 0 0 0 5px;
+}
+
+.svg-icon {
+    margin:0;
+    padding:0 9px 0 0;
 }
 
 .btn-ojmain {

@@ -105,31 +105,32 @@ module.exports = {
             }
         },
         {
-          resolve: `gatsby-plugin-prefetch-google-fonts`,
+          resolve: `gatsby-plugin-webfonts`,
           options: {
-            fonts: [
-              {
-                family: `Major Mono Display`,
-                formats: [ "woff", "woff2" ],
-                variants: [`400`]
-              },
-              {
-                family: `Roboto Mono`,
-                formats: [ "woff", "woff2" ],
-                variants: ['100', '400', '700']
-              },
-              {
-                family: `Roboto`,
-                formats: [ "woff", "woff2" ],
-                variants: ['200', '400', '700'],
-                variants: [`thin`, `light`]
-              },
-              {
-                family: `Mulish`,
-                variants: ['200', '400', '900'],
-                formats: [ "woff", "woff2" ],
-              },
-            ],
+            fonts: {
+                google: [
+                    {
+                      family: `Major Mono Display`,
+                      formats: [ "woff", "woff2" ],
+                      variants: [`400`]
+                    },
+                    {
+                      family: `Roboto Mono`,
+                      formats: [ "woff", "woff2" ],
+                      variants: ['100', '400', '700']
+                    },
+                    {
+                      family: `Roboto`,
+                      formats: [ "woff", "woff2" ],
+                      variants: ['200', '400', '700'],
+                      variants: [`thin`, `light`]
+                    },
+                    {
+                      family: `Mulish`,
+                      variants: ['200', '400', '700', '900'],
+                      formats: [ "woff", "woff2" ],
+                    },
+            ]},
           },
         },
     ],

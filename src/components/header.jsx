@@ -1,10 +1,13 @@
+// JS
 import {Link, Trans, useI18next, I18nextContext} from 'gatsby-plugin-react-i18next';
 import {Link as GatsbyLink} from 'gatsby';
 import PropTypes from 'prop-types';
-import '../styles/header.scss';
 import React from 'react';
-import OJLogo from "../images/openjustice_tq.png";
 import UserMenu from "../components/header_profile";
+// CSS
+import '../styles/header.scss';
+// IMG
+import OJLogo from "../images/openjustice_tq.png";
 
 const Header = ({siteTitle}) => {
     const {languages, originalPath, t} = useI18next();

@@ -1,0 +1,35 @@
+@import "./_variables";
+
+.introtext {
+    border-top:1px solid $grey_1;
+}
+
+.introtext a {
+    font-weight:700;
+}
+
+.introtext h2 {
+    font-size:1.2rem;
+    font-family: $main_font;
+    font-weight:700;
+}
+
+.introtext div {
+    color: $main_color;
+    font-weight:400;
+}
+
+.bridgetext {
+    padding-top:2rem;
+    padding-bottom:1.8rem;
+    border-bottom:1px solid $grey_1;
+}
+
+.bridgetext img {
+    padding:0 18px;
+}
+
+.bridgetext div {
+    font-size: 1.8rem;
+    font-weight:700;
+}
