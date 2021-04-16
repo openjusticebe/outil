@@ -4,6 +4,7 @@ import Uploader from "../components/uploader";
 import FileData from "../components/filedata";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
 // IMG
 import LoadGif from '../images/hourglass.gif';
 
@@ -235,18 +236,23 @@ class UploadUi extends React.Component {
 
     render() {
         return (
-            <div className="col-12 shadow rounded border py-3 my-3 private">
-                <h2><i className="icon-inbox" /> Préparer le contenu / Inhoud voorbereiden</h2>
-                <h3>Le contenu dans se cadre ne sera pas enregistré
-                / Inhoud in dit kader wordt niet opgeslagen</h3>
-                <div className="row justify-content-center">
-                    <div className="col-4">
-                        <Uploader
-                            parentCallback={ this.handleReference }
-                            waiting={ this.state.parse_waiting }
-                            state={ this.state.parse_state }
-                        />
+            <div className="col-12 my-5 private">
+                <div className="part-heading row">
+                    <div className="mr-4">
+                        <span class="page-current">1</span>
+                        <span class="page-total">/3</span>
                     </div>
+                    <div>
+                        <h2><Trans>Préparer le contenu</Trans></h2>
+                        <p><Trans>Le contenu dans se cadre ne sera pas enregistré</Trans></p>
+                    </div>
+                </div>
+                <div className="row justify-content-center">
+                    <Uploader
+                        parentCallback={ this.handleReference }
+                        waiting={ this.state.parse_waiting }
+                        state={ this.state.parse_state }
+                    />
                 </div>
                 <FileData
                     state={ this.state.parse_state }

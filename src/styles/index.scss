@@ -33,3 +33,23 @@
     font-size: 1.8rem;
     font-weight:700;
 }
+
+.part-heading {
+    display:flex;
+    flex-flow:row nowrap;
+    justify-content: flex-start;
+}
+
+.page-current {
+    color:$sec_light_color;
+    font-size:4rem;
+    margin:0;padding:0;
+    vertical-align:middle;
+}
+
+.page-total {
+    color:$main_light_color;
+    font-size:2.5rem;
+    margin:0;padding:0;
+    vertical-align:top;
+}

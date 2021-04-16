@@ -1,5 +1,7 @@
-@import "~bootstrap/scss/bootstrap";
 @import "./_variables";
+$font-family-sans-serif: $main_font;
+$font-family-base: $main_font;
+@import "~bootstrap/scss/bootstrap";
 
 html {
     -ms-text-size-adjust: 100%;
@@ -24,7 +26,7 @@ h1 {
 }
 
 h1, h2, h3, h4, h5, div, p {
-    font-family: $main_font;
+    font-family: $main_font !important;
 }
 
 body {
@@ -69,4 +71,17 @@ body {
     color: #fff;
     background-color: $sec_color;
     border-color: $sec_color;
+}
+
+.btn-ojact {
+    color:#fff;
+    background-color:$button-color;
+    border-color:$button-color;
+    font-weight:700;
+}
+
+.btn-ojact:hover {
+    color:#fff;
+    background-color:$button-color-hover;
+    border-color:$button-color-hover;
 }

@@ -25,6 +25,13 @@ $sec_color : $turquoise;
 $sec_dark_color: #127372;
 $sec_light_color : $turquoise_clair;
 $background : #fff;
+$button-color: #5E81F4;
+$button-color-hover:#3953a8;
 
 $main_font: 'Mulish', sans-serif;
 $monospace-font: 'Roboto Mono', monospace;
+
+// Bootstrap theming
+// Does not work, somehow
+$font-family-sans-serif: $main_font;
+$font-family-base: $main_font;

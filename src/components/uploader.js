@@ -1,6 +1,7 @@
 import React from "react";
 import Dropzone from 'react-dropzone'
 import LoadGif from '../images/hourglass.gif';
+import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
 
 export default ({ parentCallback, waiting }) => {
 
@@ -27,14 +28,14 @@ export default ({ parentCallback, waiting }) => {
     }
 
     return (
-        <div className="uploader btn btn-primary my-2">
+        <div className="uploader btn btn-ojact px-5">
             <Dropzone onDrop={acceptedFiles => handleFiles(acceptedFiles)}>
               {({getRootProps, getInputProps}) => (
                 <section>
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
                       { waiting && <img className="loadgif" src={LoadGif} alt="loading" />}
-                    <p>Cliquez ici pour choisir un fichier<br/>Klik hier om een bestand te kiezen</p>
+                    <Trans>Choisir un fichier</Trans>
                   </div>
                 </section>
               )}
