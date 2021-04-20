@@ -1,0 +1,12 @@
+@import "./_variables";
+
+#send fieldset {
+    border: 2px solid $sec_color;
+    border-top-width:40px;
+    border-radius:7px;
+}
+
+#send legend {
+    background-color:$sec_color;
+    color:#fff;
+}

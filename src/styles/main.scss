@@ -1,6 +1,4 @@
 @import "./_variables";
-$font-family-sans-serif: $main_font;
-$font-family-base: $main_font;
 @import "~bootstrap/scss/bootstrap";
 
 html {
@@ -84,4 +82,8 @@ body {
     color:#fff;
     background-color:$button-color-hover;
     border-color:$button-color-hover;
+}
+
+.oj-info {
+    background-color: $sec_color;
 }

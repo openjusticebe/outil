@@ -10,8 +10,11 @@ import PlaceholderManager from "../services/placeholder.js";
 import Layout from "../components/layout";
 import SEO from '../components/seo';
 import UploadUi from "../components/upload";
+import AnonymiseUi from "../components/anonymise";
+import SendUi from "../components/send";
 // CSS
 import '../styles/index.scss';
+import '../styles/components.scss';
 // IMG
 import OJCheck from "../images/check.svg";
 import OJSubscribe from "../images/inscription.svg";
@@ -60,12 +63,10 @@ const IndexPage = () => {
             };
         });
         const newEntities = {...this.state.entities, ...entities}
-        const parsed = parseText(newEntities, text)
 
         if (text) {
             setRawText(text);
-            setParsedText(parsed)
-            setEntities(newEntities);
+            entitiesSet(newEntities);
         }
         //FIXME : do proper notification
         //if ('log_text' in log) {
@@ -73,6 +74,46 @@ const IndexPage = () => {
         //        log_text: {__html: log['log_text'] }
         //    })
         //}
+    }
+
+    const entitiesSet = (entities) => {
+        const parsed = parseText(newEntities, rawText);
+        setParsedText(parsed);
+        setEntities(newEntities);
+    }
+
+    const entityRemove = async (event) => {
+        let newEntities = {...entities};
+        const evId = event.currentTarget.parentNode.parentNode.parentNode.id;
+        if (evId in newEntities) {
+            delete newEntities[id];
+        }
+        entitiesSet(newEntities);
+    }
+
+    const entityAdd = async (event) => {
+        let len = Object.keys(entities).length + 1;
+        let newkey = `entity#${len}`;
+        let newEntities = {...entities};
+        newEntities[newkey] = {
+            'text':[],
+            'type':'person',
+            'placeholder': PlaceholderManager.get('person', newkey)
+        };
+        setEntities(newEntities);
+    }
+
+    const entityUpdate = async (event) => {
+        // FIXME: refactor this
+        const id = event.currentTarget.parentNode.parentNode.parentNode.id;
+        let newEntities = {...entities};
+        let field = event.target.name;
+        if (id in newEntities) {
+            newEntities[id][field] = event.target.value;
+        }
+        
+        const parsed = parseText(newEntities, this.state.text_raw)
+        entitiesSet(newEntities);
     }
 
     return (
@@ -125,6 +166,16 @@ const IndexPage = () => {
                         TextHandler = { handleExtract }
                         hashKey={'upload'}
                         />    
+                    <AnonymiseUi
+                            preparedText = { parsedText }
+                            entities = { entities }
+                            textChange = { (event) => { setParsedText(event.target.value) } }
+                            entityRemove = { entityRemove }
+                            entityAdd = { entityAdd }
+                            entityChange = { entityUpdate }
+                            hashKey={'anonymise'} />
+                    <SendUi uploadedText = { parsedText } hashKey={'send'} />
+                            
                 </div>
             </div>
         </Layout>
