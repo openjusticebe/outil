@@ -10,6 +10,8 @@ import { isLoggedIn, getAuthHeader } from "../services/auth"
 import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
 // IMG
 import LoadGif from '../images/hourglass.gif';
+import OJKey from "../images/key.svg";
+import OJClip from "../images/paperclip.svg";
 
 class SendUi extends React.Component {
 
@@ -215,6 +217,7 @@ class SendUi extends React.Component {
                     <Form id="send" noValidate validated={ this.state.validated } onSubmit={ this.handleSubmit } onChange={ this.handleChange } className="pl-3">
                         <fieldset className="p-3">
                             <legend className="">
+                                <img className="svg-icon" src={ OJKey } aria-hidden="true" />
                                 Propriétés du document / document eigenschappen
                             </legend>
                             <Row>
@@ -297,7 +300,7 @@ class SendUi extends React.Component {
 
                         <fieldset className="p-3 mt-4 mb-4">
                             <legend className="">
-                                <i className="icon-attach pr-2" />
+                                <img className="svg-icon" src={ OJClip } aria-hidden="true" />
                                 Liens et références vers d'autres textes
                             </legend>
                             <Form.Group controlId="myform.docs">
