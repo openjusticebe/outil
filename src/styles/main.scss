@@ -29,7 +29,6 @@ h1, h2, h3, h4, h5, div, p {
 
 body {
 	padding: 5px;
-	overflow-x: hidden; /* For Opera */
 	-webkit-box-shadow:
 		inset $sec_color 0 0 0 5px;
 	-moz-box-shadow:
@@ -86,4 +85,15 @@ body {
 
 .oj-info {
     background-color: $sec_color;
+}
+
+.notif {
+    background-color:#0076fd;
+    color:#fff;
+    padding:.4rem 2rem;
+    margin:0 0 1rem;
+    position:-webkit-sticky;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
