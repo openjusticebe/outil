@@ -7,6 +7,7 @@ import SEO from "../components/seo";
 import SubscribeForm from "../components/forms/subscribe";
 // IMG
 // CSS
+import '../styles/components.scss';
 // import "../styles/style.scss";
 
 class SubscribePage extends React.Component {

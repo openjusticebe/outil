@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
     const [notification, setNotification] = useState(false);
 
     return (
-        <>
+        <div id="body">
         <NotifProvider>
             <Header siteTitle={data.site.siteMetadata.title} />
             <NotifDisplay />
@@ -48,7 +48,7 @@ const Layout = ({ children }) => {
                 //<Footer />
             }
         </NotifProvider>
-        </>
+        </div>
     )
 }
 

@@ -10,5 +10,6 @@
   "txt_index_share": "Cet assistant permet le partage et la publication de décisions de justice, dans le cadre du projet pilote mené par l'ASBL.",
   "txt_index_subscribe": "Le dépôt de documents ne peut se faire qu'après inscription, sous réserve d'acceptation par l'ASBL et en fonction de l'avancement de l'expérimentation.",
   "txt_index_upload": "Une fois envoyé, vous recevez immédiatement un lien personnel permettant le partage du document.  Après validation par OpenJustice.be, le document sera accessible publiquement.",
-  "txt_index_upload_bis": "Avant envoi, aucune donnée n'est enregistrée ou journalisée"
+  "txt_index_upload_bis": "Avant envoi, aucune donnée n'est enregistrée ou journalisée",
+  "txt_error_login": "Erreur d'authentification - utilisateur ou mot de passe inconnu"
 }

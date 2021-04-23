@@ -11,6 +11,21 @@ body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image: url(/static/background.png);
+    background-size:auto;
+}
+
+#body {
+    background-color:#fff;
+    max-width:1200px;
+    margin:auto;
+	padding: 5px;
+	-webkit-box-shadow:
+		inset $sec_color 0 0 0 5px;
+	-moz-box-shadow:
+		inset $sec_color 0 0 0 5px;
+	box-shadow:
+		inset $sec_color 0 0 0 5px;
 }
 
 button, a {
@@ -28,13 +43,7 @@ h1, h2, h3, h4, h5, div, p {
 }
 
 body {
-	padding: 5px;
-	-webkit-box-shadow:
-		inset $sec_color 0 0 0 5px;
-	-moz-box-shadow:
-		inset $sec_color 0 0 0 5px;
-	box-shadow:
-		inset $sec_color 0 0 0 5px;
+
 }
 
 .svg-icon {

@@ -22,7 +22,7 @@ function useNotification() {
     const context = React.useContext(NotificationContext);
     if (context === undefined) {
         console.log('error');
-        throw new Error('useNotification must be used within a CountProvider');
+        throw new Error('useNotification must be used within a NotifProvider');
     }
     return context;
 }
