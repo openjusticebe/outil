@@ -64,13 +64,14 @@ const LostPasswordForm = ({ loginClick }) => {
                   noValidate
                   validated={ validated }
                   method="post"
+                  className="ojform"
                   onSubmit={event => {
                     handleSubmit(event)
                   }}
                 >
                     <Row className="justify-content-center">
-                        <h2 className=""><Trans>Mot de passe perdu</Trans></h2>
-                        <div className="">
+                        <h2><Trans>Mot de passe perdu</Trans></h2>
+                        <div>
                             <p>{ t('txt_password_lost')}</p>
                         </div>
                     </Row>

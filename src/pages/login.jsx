@@ -14,13 +14,11 @@ const LoginPage = () => {
     const [showLost, setShowLost] = useState(false);
 
     const showLostPasswordForm = () => {
-        console.log('lost');
         setShowLogin(false);
         setShowLost(true);
     }
 
     const showLoginForm = () => {
-        console.log('login');
         setShowLost(false);
         setShowLogin(true);
     }

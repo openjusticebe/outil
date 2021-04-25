@@ -51,10 +51,11 @@ const SubscribeForm = () => {
 
     const handleError = (msg) => {
         setWaiting(false);
+        let errText = t('txt_error_subscribe');
         if (msg) {
-            notify(`Subscription error ${msg}`, 'Error');
+            notify(`${errText} ${msg}`, 'error');
         } else {
-            notify('Subscription error', 'Error');
+            notify(`${errText}`, 'error');
         }
     };
 
@@ -72,79 +73,81 @@ const SubscribeForm = () => {
 
     return (
         <div>
-            <h2>Inscription / Inschrijving</h2>
-            <div className="p-4">
-                <p>{ t('txt_subscribe_main')}</p>
-            </div>
-
             <Form noValidate
+                id="subscribe"
+                className="pl-3 ojform"
                 validated={ validated }
                 onSubmit={ handleSubmit }
-                onChange={ handleChange } className="pl-3">
-                <Form.Row>
-                    <Form.Group as={Col} controlId="fname">
-                        <Form.Label>Prénom / Voornaam</Form.Label>
-                        <Form.Control required placeholder="Sacha" />
+                onChange={ handleChange }
+                >
+                    <Form.Row>
+                        <h2><Trans>Inscription</Trans></h2>
+                        <div className="p-4"><p>{ t('txt_subscribe_main')}</p></div>
+                    </Form.Row>
+                    <Form.Row>
+                        <Form.Group as={Col} controlId="fname">
+                            <Form.Label><Trans>Prénom</Trans></Form.Label>
+                            <Form.Control required placeholder="Sacha" />
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="lname">
+                            <Form.Label><Trans>Nom de famille</Trans></Form.Label>
+                            <Form.Control required placeholder="Jacobs" />
+                        </Form.Group>
+                    </Form.Row>
+
+                    <Form.Row>
+                        <Form.Group as={Col} controlId="email">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control required type="email" placeholder="s.jacobs@example.com" />
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="password">
+                            <Form.Label><Trans>Mot de passe</Trans></Form.Label>
+                            <Form.Control required type="password" placeholder="" />
+                        </Form.Group>
+                    </Form.Row>
+
+                    <Form.Row>
+                        <Form.Group as={Col} controlId="interest">
+                            <Form.Label><Trans>Intérêt pour OpenJustice</Trans></Form.Label>
+                            <Form.Control as="select">
+                                <option value="">{ t('opt-choix') }</option>
+                                <option value="test">{ t('opt-test') }</option>
+                                <option value="share">{ t('opt-share') }</option>
+                                <option value="participate">{ t('opt-participate') }</option>
+                            </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="profession">
+                            <Form.Label><Trans>Activité professionnelle</Trans></Form.Label>
+                            <Form.Control required as="select">
+                                <option value="">{ t('opt-choix') }</option>
+                                <option value="avocat">{ t('opt-avocat') }</option>
+                                <option value="magistrat">{ t('opt-magistrat') }</option>
+                                <option value="juriste">{ t('opt-Juriste') }</option>
+                                <option value="documentaliste">{t('opt-documentaliste') }</option>
+                                <option value="traducteur">{ t('opt-traducteur') }</option>
+                                <option value="académicien">{ t('opt-académicien') }</option>
+                                <option value="chercheur">{ t('opt-chercheur') }</option>
+                                <option value="etudiant">{ t('opt-etudiant') }</option>
+                                <option value="developpeur">{ t('opt-developpeur') }</option>
+                                <option value="autre">{ t('opt-autre') }</option>
+                            </Form.Control>
+                        </Form.Group>
+                    </Form.Row>
+
+                    <Form.Group controlId="description">
+                        <Form.Label><Trans>Un mot sur vous</Trans></Form.Label>
+                        <Form.Control as="textarea" rows={3} />
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="lname">
-                        <Form.Label>Nom de famille / Familienaam</Form.Label>
-                        <Form.Control required placeholder="Jacobs" />
-                    </Form.Group>
-                </Form.Row>
-
-                <Form.Row>
-                    <Form.Group as={Col} controlId="email">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control required type="email" placeholder="s.jacobs@example.com" />
+                    <Form.Group controlId="agree">
+                        <Form.Check required type="checkbox" label={ t('txt_subscribe_accept') }/>
                     </Form.Group>
 
-                    <Form.Group as={Col} controlId="password">
-                        <Form.Label>Mot de passe / Wachtwoord</Form.Label>
-                        <Form.Control required type="password" placeholder="****" />
-                    </Form.Group>
-                </Form.Row>
-
-                <Form.Row>
-                    <Form.Group as={Col} controlId="interest">
-                        <Form.Label>Interesse voor / Intérêt pour OpenJustice</Form.Label>
-                        <Form.Control as="select">
-                            <option value="">Choisir / Kiezen</option>
-                            <option value="test">Nieuwsgierigheid / Curiosité</option>
-                            <option value="share">Rechtspraak delen / Partager jurisprudence</option>
-                            <option value="participate">Deelnemen aan de gemeenschap / Participer à la communauté</option>
-                        </Form.Control>
-                    </Form.Group>
-
-                    <Form.Group as={Col} controlId="profession">
-                        <Form.Label>Professionele activiteit / Activité professionnelle</Form.Label>
-                        <Form.Control required as="select">
-                            <option value="">Choisir / Kiezen</option>
-                            <option value="avocat">Avocat / Advocaat</option>
-                            <option value="magistrat">Magistrat / Magistraat</option>
-                            <option value="juriste">Juriste / Jurist</option>
-                            <option value="documentaliste">Documentaliste / Documentalist</option>
-                            <option value="traducteur">Traducteur.trice / Vertaler</option>
-                            <option value="académicien">Académicien.ne / Academicus</option>
-                            <option value="chercheur">Chercheur / Onderzoeker</option>
-                            <option value="etudiant">Étudiant.e / Student</option>
-                            <option value="developpeur">Développeur.euse / Ontwikkelaar</option>
-                            <option value="autre">Autre / Overige</option>
-                        </Form.Control>
-                    </Form.Group>
-                </Form.Row>
-
-                <Form.Group controlId="description">
-                    <Form.Label>Un mot sur vous / Een woord over u</Form.Label>
-                    <Form.Control as="textarea" rows={3} />
-                </Form.Group>
-
-                <Form.Group controlId="agree">
-                    <Form.Check required type="checkbox" label="J'accepte les conditions d'utilisation du service / Ik accepteer de gebruiksvoorwaarden van de dienst" />
-                </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Envoyer / Verzenden
+                <Button variant="primary" type="submit" className="btn-ojact">
+                    <Trans>Transmettre l'inscription</Trans>
                     {waiting && <img className="loadgif" src={LoadGif} alt="loading" />}
                 </Button>
             </Form>

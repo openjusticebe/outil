@@ -64,6 +64,7 @@ const LoginForm = ({ lostPasswordClick }) => {
                   noValidate
                   validated={ validated }
                   method="post"
+                className="ojform"
                   onSubmit={event => { handleSubmit(event) }}
                 >
                     <Row className="justify-content-center">
