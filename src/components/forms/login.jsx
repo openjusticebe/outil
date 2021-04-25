@@ -13,10 +13,11 @@ import SEO from '../seo';
 //IMG
 import LoadGif from '../../images/hourglass.gif';
 
-const LoginForm = () => {
+const LoginForm = ({ lostPasswordClick }) => {
     const {t} = useTranslation();
     const { notify } = useNotification();
     const [waiting, setWaiting] = useState(false);
+    const [validated, setValidated] = useState(false);
     const [error, setError] = useState(false);
     const [fData, setFData] = useState({'login': null, 'password': null});
 
@@ -31,8 +32,14 @@ const LoginForm = () => {
     const handleSubmit = async event => {
         event.preventDefault();
         setWaiting(true);
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            setValidated(true);
+            setWaiting(false);
+            return;
+        }
         handleLogin(
-            fData,
+            formData,
             () => {navigate(`/`)},
             () => {handleError()}
         );
@@ -47,13 +54,15 @@ const LoginForm = () => {
 
 
     if (isLoggedIn()) {
-        navigate(`/admin`);
+        navigate(`/`);
     };
 
     return (
         <div className="container m-3 d-flex justify-content-center">
             <div className="col-6 mt-5">
                 <Form
+                  noValidate
+                  validated={ validated }
                   method="post"
                   onSubmit={event => { handleSubmit(event) }}
                 >
@@ -61,17 +70,17 @@ const LoginForm = () => {
                             <h2 className=""><Trans>Connexion utilisateur</Trans></h2>
                             <Form.Label>
                                 <Trans>Email</Trans>
-                              <Form.Control name="username" type="text" onChange={ handleUpdate } />
+                              <Form.Control name="username" required type="text" onChange={ handleUpdate } />
                             </Form.Label>
                     </Row>
                     <Row className="justify-content-center">
                             <Form.Label>
                               <Trans>Mot de passe</Trans>
-                              <Form.Control name="password" type="password" onChange={ handleUpdate } />
+                              <Form.Control name="password" required type="password" onChange={ handleUpdate } />
                             </Form.Label>
                     </Row>
                     <Row className="justify-content-center">
-                        <a href="#" className=""><small><Trans>Mot de passe oublié</Trans></small></a>
+                        <a href="#" className="" onClick={ lostPasswordClick }><small><Trans>Mot de passe oublié</Trans></small></a>
                     </Row>
                     <Row className="row d-flex justify-content-center mt-4">
                         <Button variant="success" type="submit" className="p-2 btn-ojact">

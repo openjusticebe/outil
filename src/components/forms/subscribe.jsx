@@ -22,6 +22,7 @@ const EmptyForm = {
 }
 
 const SubscribeForm = () => {
+    const {t} = useTranslation();
     const { notify } = useNotification();
 
     const [validated, setValidated] = useState(false);
@@ -73,8 +74,7 @@ const SubscribeForm = () => {
         <div>
             <h2>Inscription / Inschrijving</h2>
             <div className="p-4">
-                <p>Vous souhaitez participer à la phase de test d'une solution de partage et de publication securisée et anonymisée de la jurisprudence ?</p>
-                <p>Wilt u deelnemen aan de testfase van een oplossing voor het veilig en geanonimiseerd delen en publiceren van de rechtspraak?</p>
+                <p>{ t('txt_subscribe_main')}</p>
             </div>
 
             <Form noValidate
