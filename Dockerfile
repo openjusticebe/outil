@@ -24,6 +24,7 @@ COPY package.json yarn.lock ./
 RUN yarn
 
 COPY ./src ./src
+COPY ./static ./static
 COPY languages.js ./languages.js
 COPY gatsby* ./
 RUN yarn build
