@@ -285,13 +285,13 @@ class UploadUi extends React.Component {
                 </div>
                 <div className="row justify-content-center mt-3">
                     <Form onSubmit={ this.handleSubmit } className="pl-3">
-                      <Button variant="primary" type="submit">
+                      <Button variant="" type="submit" className="btn-ojact">
                       { this.state.waiting && <img className="loadgif" src={LoadGif} alt="loading" /> }
                       anonymiser / anonimiseren
                       </Button>
                     </Form>
                     <Form onSubmit={ this.handleTransfer} className="pl-3">
-                      <Button variant="outline-primary" type="submit">
+                      <Button variant="" type="submit" className="btn-outline-ojact">
                       déjà anonymisé / al geanonimiseerd
                       </Button>
                     </Form>

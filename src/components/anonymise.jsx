@@ -88,7 +88,7 @@ const AnonymiseUi = (props) => {
                 </div>
             </div>
             <div className="row justify-content-center">
-                <div id="content_raw" dangerouslySetInnerHTML={{__html: prep_text(props.preparedText) }} />
+                <div id="content_anon" dangerouslySetInnerHTML={{__html: prep_text(props.preparedText) }} />
             </div>
         </div>
     );

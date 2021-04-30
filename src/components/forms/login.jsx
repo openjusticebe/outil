@@ -39,7 +39,7 @@ const LoginForm = ({ lostPasswordClick }) => {
             return;
         }
         handleLogin(
-            formData,
+            fData,
             () => {navigate(`/`)},
             () => {handleError()}
         );
