@@ -38,9 +38,8 @@ body img {
 }
 
 
-h1 {
-    color:#000;
-    font-family: $main_font;
+h1, h2, h3, h4, h5 {
+    color: $title-color !important;
 }
 
 h1, h2, h3, h4, h5, div, p {
@@ -74,7 +73,9 @@ body {
     border-color: $sec_dark_color;
 }
 
-.btn-outline-ojsec {
+.btn-outline-ojsec,
+.btn-outline-ojsec:active,
+.btn-outline-ojsec:visited {
     color: $sec_color;
     border-color: $sec_color;
 }
@@ -85,7 +86,9 @@ body {
     border-color: $sec_color;
 }
 
-.btn-ojact, .btn-ojact:visited {
+.btn-ojact,
+.btn-ojact:active,
+.btn-ojact:visited {
     color:#fff;
     background-color:$button-color;
     border-color:$button-color;
@@ -126,6 +129,11 @@ body {
 
 .oj-info {
     background-color: $sec_color;
+}
+
+.oj-error {
+    background-color: $sec_light_color;
+    padding:.3rem 1rem;
 }
 
 .notif {

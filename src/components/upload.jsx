@@ -26,7 +26,8 @@ class UploadUi extends React.Component {
             pages_total: 0,
             page_current: 0,
             ocr_streaming: true,
-            waiting: false
+            waiting: false,
+            error: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleTransfer = this.handleTransfer.bind(this);
@@ -188,7 +189,7 @@ class UploadUi extends React.Component {
     }
 
     handleSubmit(event) {
-        this.setState({waiting: true})
+        this.setState({waiting: true, error: false})
         event.preventDefault();
 
         const query = {
@@ -259,6 +260,13 @@ class UploadUi extends React.Component {
                     degraded={ this.state.isDegraded }
                     meta={ this.state.file_meta }
                 />
+                <div className="row justify-content-center">
+                    { this.state.error &&
+                        <div className="log col-10 oj-error my-3">
+                            { this.state.error }
+                        </div>
+                    }
+                </div>
                 { this.state.ocr_streaming &&
                     <div className="row justify-content-center">
                         <div className="stream_info col-10 bg-secondary text-white">
@@ -267,13 +275,6 @@ class UploadUi extends React.Component {
                         </div>
                     </div>
                 }
-                <div className="row justify-content-center">
-                    { this.state.error &&
-                        <div className="log col-10 bg-info">
-                            { this.state.error }
-                        </div>
-                    }
-                </div>
                 <div className="row justify-content-center">
                     <textarea
                         id="content_raw"
@@ -287,12 +288,12 @@ class UploadUi extends React.Component {
                     <Form onSubmit={ this.handleSubmit } className="pl-3">
                       <Button variant="" type="submit" className="btn-ojact">
                       { this.state.waiting && <img className="loadgif" src={LoadGif} alt="loading" /> }
-                      anonymiser / anonimiseren
+                      <Trans>Anonymiser</Trans>
                       </Button>
                     </Form>
                     <Form onSubmit={ this.handleTransfer} className="pl-3">
                       <Button variant="" type="submit" className="btn-outline-ojact">
-                      déjà anonymisé / al geanonimiseerd
+                      <Trans>Déjà anonymisé</Trans>
                       </Button>
                     </Form>
                 </div>

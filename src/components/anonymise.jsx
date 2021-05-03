@@ -4,6 +4,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import PlaceholderManager from "../services/placeholder.js";
 import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
+// IMG
+import OJBin from "../images/bin.svg";
+import OJEye from "../images/eye.svg";
 
 const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
     <Form id={ id }>
@@ -22,8 +25,8 @@ const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
                 <Form.Control type="text" name="placeholder" value={ placeholder } onChange={ onChange }/>
             </div>
             <div className="col-2">
-                <Button onClick={ onRemove } className="btn btn-danger">
-                    <i className="icon-trash" />
+                <Button onClick={ onRemove } className="btn term_remove">
+                    <img className="" src={ OJBin } alt={ useTranslation('delete') } />
                 </Button>
             </div>
         </div>
@@ -57,7 +60,7 @@ const prep_text = (text) => {
 
 const AnonymiseUi = (props) => {
     return (
-        <div className="col-12 mb-5">
+        <div className="anonymise col-12 mb-5">
             <div className="part-heading row">
                 <div className="mr-4">
                     <span class="page-current">2</span>
@@ -72,17 +75,19 @@ const AnonymiseUi = (props) => {
                     </ul>
                 </div>
             </div>
-            <div className="row justify-content-center">
+            <div className="row justify-content-center mb-2">
                 <EntityForm
                     entities={ props.entities }
                     onRemove={ props.entityRemove }
                     onChange={ props.entityChange }/>
                 <Button className="btn btn-ojact" onClick={ props.entityAdd } ><Trans>Ajouter un terme</Trans></Button>
             </div>
-                <hr/>
-            <div className="row justify-content-center">
-                <p><Trans>Aperçu du document final</Trans></p>
-                <div className="oj-info text-white p-2 m-3">
+            <div className="row justify-content-center pt-5">
+                <h3>
+                    <img className="oj_eye" src={ OJEye } aria-hidden="true" />
+                    <Trans>Aperçu du document final</Trans>
+                </h3>
+                <div className="oj-info text-white px-2 mx-3 mb-3">
                     Le texte anonymisé apparaît entre crochets : ceci facilite les traitements ultérieurs.<br />
                     De geanonimiseerde tekst wordt tussen vierkante haken weergegeven: dit vergemakkelijkt de latere verwerking.
                 </div>

@@ -50,11 +50,13 @@ const IndexPage = () => {
     ///////////////////////////////////////////////////////////////////////////
 
     const handleExtract = async (text, entities_in, log={}) => {
-        let entities = {...entities_in};
+        console.log('text updated');
+        alert('handleextract');
+        let _entities = {...entities_in};
         const keys = Object.keys(entities);
         keys.forEach( key => {
-            let e = entities[key];
-            entities[key] = {
+            let e = _entities[key];
+            _entities[key] = {
                 id: e.id,
                 text: e.text,
                 type: e.type,
@@ -62,11 +64,14 @@ const IndexPage = () => {
                 placeholder: PlaceholderManager.get(e.type, key)
             };
         });
-        const newEntities = {...this.state.entities, ...entities}
+
+        const newEntities = {...entities, ..._entities}
 
         if (text) {
             setRawText(text);
-            entitiesSet(newEntities);
+            const parsed = parseText(newEntities, text);
+            setEntities(newEntities);
+            setParsedText(parsed);
         }
         //FIXME : do proper notification
         //if ('log_text' in log) {
@@ -76,7 +81,7 @@ const IndexPage = () => {
         //}
     }
 
-    const entitiesSet = (entities) => {
+    const entitiesSet = (newEntities) => {
         const parsed = parseText(newEntities, rawText);
         setParsedText(parsed);
         setEntities(newEntities);
@@ -104,7 +109,6 @@ const IndexPage = () => {
     }
 
     const entityUpdate = async (event) => {
-        // FIXME: refactor this
         const id = event.currentTarget.parentNode.parentNode.parentNode.id;
         let newEntities = {...entities};
         let field = event.target.name;
@@ -112,7 +116,7 @@ const IndexPage = () => {
             newEntities[id][field] = event.target.value;
         }
         
-        const parsed = parseText(newEntities, this.state.text_raw)
+        const parsed = parseText(newEntities, rawText)
         entitiesSet(newEntities);
     }
 
