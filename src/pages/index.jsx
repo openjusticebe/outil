@@ -50,15 +50,13 @@ const IndexPage = () => {
     ///////////////////////////////////////////////////////////////////////////
 
     const handleExtract = async (text, entities_in, log={}) => {
-        console.log('text updated');
-        alert('handleextract');
         let _entities = {...entities_in};
-        const keys = Object.keys(entities);
+        const keys = Object.keys(_entities);
         keys.forEach( key => {
             let e = _entities[key];
             _entities[key] = {
                 id: e.id,
-                text: e.text,
+                text: e.text[0],
                 type: e.type,
                 words: e.words,
                 placeholder: PlaceholderManager.get(e.type, key)
@@ -91,7 +89,7 @@ const IndexPage = () => {
         let newEntities = {...entities};
         const evId = event.currentTarget.parentNode.parentNode.parentNode.id;
         if (evId in newEntities) {
-            delete newEntities[id];
+            delete newEntities[evId];
         }
         entitiesSet(newEntities);
     }

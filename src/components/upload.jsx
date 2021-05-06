@@ -27,6 +27,7 @@ class UploadUi extends React.Component {
             page_current: 0,
             ocr_streaming: true,
             waiting: false,
+            anon_visible: false,
             error: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,6 +36,7 @@ class UploadUi extends React.Component {
         this.handleTextExtract = this.handleTextExtract.bind(this);
         this.handleTextPage = this.handleTextPage.bind(this);
         this.handleReference = this.handleReference.bind(this);
+        this.toggleAnonLog = this.toggleAnonLog.bind(this);
         // this.handleTextMeta = this.handleTextMeta.bind(this);
         this.handleCallback = props.TextHandler;
     }
@@ -47,6 +49,12 @@ class UploadUi extends React.Component {
     // 2. Wait for meta
     // 3. Wait for text results
     
+    toggleAnonLog() {
+        this.setState({
+            anon_visible: !this.state.anon_visible
+        });
+    }
+
     handleReference(ref) {
         this.setState({
             upload_ref: ref,
@@ -200,7 +208,7 @@ class UploadUi extends React.Component {
             'encoding': 'utf8',
             'text': this.state.text,
             'error': false,
-            'anon_log': false
+            'anon_log': false,
         }
 
         // Get api response
@@ -297,11 +305,18 @@ class UploadUi extends React.Component {
                       </Button>
                     </Form>
                 </div>
-                <div className="row justify-content-center">
-                    { this.state.anon_log &&
-                        <div className="log col-10" dangerouslySetInnerHTML={ this.state.anon_log } />
+                { this.state.anon_log &&
+                <div className="row justify-content-center mx-3">
+                    <div className="col-10">
+                        <button className="btn btn-ojsimple" onClick={ this.toggleAnonLog }>
+                            <Trans>Afficher le journal</Trans>
+                        </button>
+                    </div>
+                    { this.state.anon_visible &&
+                        <div id="anon_log" className="log col-10" dangerouslySetInnerHTML={ this.state.anon_log } />
                     }
                 </div>
+                }
             </div>
         );
     }

@@ -50,12 +50,17 @@ form h2 {
 }
 
 .term_remove {
-    background-color:#fff;
-    border-color:#000;
+    background-color:transparent;
+    border-color:transparent;
+    padding:0;
 }
 
 .term_remove img {
-    height:10px
+    height:calc(1.5em + 0.75rem + 0px);
+}
+
+.term_remove:hover {
+    background-color:#faa;
 }
 
 .anonymise .oj_eye {
@@ -66,3 +71,93 @@ form h2 {
     font-size:1.375rem;
     font-weight:400;
 }
+
+#anon_log {
+    background-color:$sec_light_color;
+    color:#333;
+    font-family:monospace !important;
+    font-size:.7rem;
+}
+
+.anonOpts form {
+    margin-bottom:.3rem;
+}
+
+
+/************************ labels Style
+***********************************/
+.labels-list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.labels-list button {
+    align-items: center;
+    appearance: none;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    color: black;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 20px;
+    height: 15px;
+    justify-content: center;
+    line-height: 0;
+    margin-left: 8px;
+    padding: 0;
+    transform: rotate(45deg);
+    width: 15px;
+    padding-bottom:4px;
+}
+
+.labels-list > li {
+    align-items: center;
+    border-radius: 5px;
+    display: flex;
+    font-weight: 500;
+    list-style: none;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 5px 10px;
+}
+
+.labels-list li {
+    position:relative;
+}
+
+.labels-list input {
+    height:2rem;
+    width:20rem;
+}
+
+.sublabels {
+    display: flex; 
+    position:absolute;
+    top:2rem;
+    flex-direction: column;
+    list-style-type:none;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #ccc; 
+    margin:0;
+    padding:1rem 2rem;
+    margin-top:4px;
+    background-color:#fff;
+    width:20rem;
+}
+
+.sublabels li {
+    padding: .3rem 1rem;
+    width:80%;
+    cursor: pointer; 
+    border: 1px solid #fff;
+}
+
+.sublabels li:hover {
+    border-color:black;
+}
+

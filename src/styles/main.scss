@@ -75,6 +75,7 @@ body {
 
 .btn-outline-ojsec,
 .btn-outline-ojsec:active,
+.btn-outline-ojsec:focus,
 .btn-outline-ojsec:visited {
     color: $sec_color;
     border-color: $sec_color;
@@ -88,6 +89,7 @@ body {
 
 .btn-ojact,
 .btn-ojact:active,
+.btn-ojact:focus,
 .btn-ojact:visited {
     color:#fff;
     background-color:$button-color;
@@ -101,13 +103,10 @@ body {
     border-color:$button-color-hover;
 }
 
-.btn-ojact:focus, .btn-ojact:active {
-    background-color:$button-color-hover;
-    border-color:$button-color-hover;
-    box-shadow: 0px 0px 0px 4px $button-color;
-}
-
-.btn-outline-ojact, .btn-outline-ojact:visited {
+.btn-outline-ojact,
+.btn-outline-ojact:visited,
+.btn-outline-ojact:focus,
+.btn-outline-ojact:active {
     color:$button-color;
     background-color:#fff;
     border-color:$button-color;
@@ -120,13 +119,6 @@ body {
     border-color:$button-color;
 }
 
-.btn-outline-ojact:focus, .btn-outline-ojact:active {
-    background-color:$button-color;
-    border-color:$button-color;
-    box-shadow: 0px 0px 0px 4px $button-color;
-}
-
-
 .oj-info {
     background-color: $sec_color;
 }
@@ -134,6 +126,11 @@ body {
 .oj-error {
     background-color: $sec_light_color;
     padding:.3rem 1rem;
+}
+
+.btn-ojsimple {
+    border:none;
+    color:$sec_color;
 }
 
 .notif {

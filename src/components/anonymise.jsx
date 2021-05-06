@@ -25,9 +25,9 @@ const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
                 <Form.Control type="text" name="placeholder" value={ placeholder } onChange={ onChange }/>
             </div>
             <div className="col-2">
-                <Button onClick={ onRemove } className="btn term_remove">
+                <button onClick={ onRemove } className="btn term_remove">
                     <img className="" src={ OJBin } alt={ useTranslation('delete') } />
-                </Button>
+                </button>
             </div>
         </div>
     </Form>
