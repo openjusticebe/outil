@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import { Row } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
 import { handleLogin, isLoggedIn } from "../../services/auth"
 import {useNotification} from '../contexts/notification'
@@ -15,7 +15,8 @@ import LoadGif from '../../images/hourglass.gif';
 
 const LoginForm = ({ lostPasswordClick }) => {
     const {t} = useTranslation();
-    const { notify } = useNotification();
+    const {notify} = useNotification();
+    const {navigate} = useI18next()
     const [waiting, setWaiting] = useState(false);
     const [validated, setValidated] = useState(false);
     const [error, setError] = useState(false);

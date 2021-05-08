@@ -1,7 +1,7 @@
 // JS
 import React, { useEffect, useState } from "react";
-import { graphql, navigate } from 'gatsby';
-import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
+import { graphql } from 'gatsby';
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 import { useQueryParam, StringParam } from "use-query-params";
 import { getUser, isLoggedIn, logout, logcheck } from "../services/auth"
 import parseText from "../services/parser.js";
@@ -23,6 +23,7 @@ import OJDown from "../images/arrow_down.svg";
 
 const IndexPage = () => {
     const {t} = useTranslation();
+    const {navigate} = useI18next()
     const [auth, setAuth] = useQueryParam("auth", StringParam);
 
     const [rawText, setRawText] = useState('...');
@@ -181,7 +182,7 @@ const IndexPage = () => {
                 </div>
             </div>
         </Layout>
-    )
+    );
 }
 
 export default IndexPage;

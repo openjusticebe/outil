@@ -9,7 +9,7 @@ import '../styles/header.scss';
 // IMG
 import OJLogo from "../images/openjustice_tq.png";
 
-const Header = ({siteTitle}) => {
+const Header = ({isAdmin, siteTitle}) => {
     const {languages, originalPath, t} = useI18next();
     const context = React.useContext(I18nextContext);
 
@@ -26,7 +26,7 @@ const Header = ({siteTitle}) => {
                 </ul>
             </nav>
             <nav className="sub-header-sec">
-                <UserMenu />
+                <UserMenu isAdmin={isAdmin} />
                 <ul className="languages ml-auto">
                     { languages.map((lng) => (
                         <li key={ lng }>
