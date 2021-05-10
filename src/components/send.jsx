@@ -206,8 +206,8 @@ class SendUi extends React.Component {
             <div className="col-12 mb-5">
                 <div className="part-heading row">
                     <div className="mr-4">
-                        <span class="page-current">3</span>
-                        <span class="page-total">/3</span>
+                        <span className="page-current">3</span>
+                        <span className="page-total">/3</span>
                     </div>
                     <div>
                         <h2><Trans>Définir les données et envoyer</Trans></h2>
@@ -220,10 +220,10 @@ class SendUi extends React.Component {
                         validated={ this.state.validated }
                         onSubmit={ this.handleSubmit }
                         onChange={ this.handleChange }
-                        className="pl-3 ojform">
+                        className="ojform col-12">
 
                         <fieldset className="p-3">
-                            <legend className="">
+                            <legend>
                                 <img className="svg-icon" src={ OJKey } aria-hidden="true" />
                                 <Trans>Propriétés du document</Trans>
                             </legend>
@@ -309,7 +309,7 @@ class SendUi extends React.Component {
                         </fieldset>
 
                         <fieldset className="p-3 mt-4 mb-4">
-                            <legend className="">
+                            <legend>
                                 <img className="svg-icon" src={ OJClip } aria-hidden="true" />
                                 <Trans>Liens et références vers d'autres textes</Trans>
                             </legend>
@@ -319,6 +319,7 @@ class SendUi extends React.Component {
                                     <DocLinks
                                         docs={ this.state.docLinks }
                                         docDel={ this.docDel }
+                                        docChange={ this.handleChange }
                                     />
                                 </ul>
                                 <div className="d-flex justify-content-center">
@@ -334,7 +335,7 @@ class SendUi extends React.Component {
 
                         { isLoggedIn() ? null : ( 
                         <fieldset className="p-3 mt-4 mb-4">
-                            <legend className="">
+                            <legend>
                                 <i className="icon-cog pr-2" />
                                 <Trans>Données de téléchargement</Trans>
                             </legend>

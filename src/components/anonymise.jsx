@@ -26,7 +26,7 @@ const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
             </div>
             <div className="col-2">
                 <button onClick={ onRemove } className="btn term_remove">
-                    <img className="" src={ OJBin } alt={ useTranslation('delete') } />
+                    <img src={ OJBin } alt={ useTranslation('delete') } />
                 </button>
             </div>
         </div>
@@ -63,8 +63,8 @@ const AnonymiseUi = (props) => {
         <div className="anonymise col-12 mb-5">
             <div className="part-heading row">
                 <div className="mr-4">
-                    <span class="page-current">2</span>
-                    <span class="page-total">/3</span>
+                    <span className="page-current">2</span>
+                    <span className="page-total">/3</span>
                 </div>
                 <div>
                     <h2><Trans>Vérifier l'anonymisation</Trans></h2>

@@ -1,6 +1,10 @@
 import React from "react";
 import { Row, Col} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
+import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
+// IMG
+import OJBin from "../images/bin.svg";
+
 // Link : https://itnext.io/building-a-dynamic-controlled-form-in-react-together-794a44ee552c
 // https://itnext.io/how-to-build-a-dynamic-controlled-form-with-react-hooks-2019-b39840f75c4f
 
@@ -10,7 +14,7 @@ import Form from 'react-bootstrap/Form';
 // 12	"eli"	"http://www.ejustice.just.fgov.be/eli/loi/2007/05/15/2007000663/justel"	"15 MAI 2007. - Loi relative à la sécurité civile."
 // 12	"ecli"	"BE/RSCE/2020/ARR.248819"	"C.E., 30 octobre 2020, n°248.819"
 // 12	"ecli"	"BE/GHCC/2018/2018.153f"	"C. const., 8 novembre 2018, n°153/18"
-const DocLinks = ( { docs, docDel } ) => {
+const DocLinks = ( { docs, docDel, docChange } ) => {
     return docs.map((doc, idx) => {
         const typeId = `typ-${idx}`, identifierId = `id-${idx}`, labelId =`lab-${idx}`;
         const typeCtrl = `myform.doctype_{idx}`, identifierCtrl = `myform.docidentifier_${idx}`, labelCtrl =`myform.doclabel_${idx}`;
@@ -21,7 +25,14 @@ const DocLinks = ( { docs, docDel } ) => {
                 <Col className="col-4">
                     <Form.Group controlId={ typeCtrl }>
                         <Form.Label>Type :</Form.Label>
-                        <Form.Control name={ typeId } data-id={ idx } as="select" className="kind" value={ doc.kind }>
+                        <Form.Control
+                                name={ typeId }
+                                data-id={ idx }
+                                as="select"
+                                className="kind"
+                                value={ doc.kind }
+                                onChange={ docChange }
+                            >
                             <option value="eli" default>ELI (legislation)</option>
                             <option value="ecli">ECLI (jurisprudence)</option>
                         </Form.Control>
@@ -36,6 +47,7 @@ const DocLinks = ( { docs, docDel } ) => {
                             data-id={ idx }
                             className="link"
                             placeholder="ECLI:2012:(...)"
+                            onChange={ docChange }
                             value={ doc.link }
                         />
                     </Form.Group>
@@ -51,13 +63,14 @@ const DocLinks = ( { docs, docDel } ) => {
                             data-id={ idx }
                             className="label"
                             placeholder="Décision du 31 février (...)"
+                            onChange={ docChange }
                             value={ doc.label }
                         />
                     </Form.Group>
                 </Col>
                 <Col className="col-2 d-flex">
-                    <button type="button" className="btn btn-outline-danger align-self-end ml-auto" onClick={ () => docDel( idx ) }>
-                        <i className="icon-trash" />
+                    <button type="button" className="btn term_remove align-self-end ml-auto" onClick={ () => docDel( idx ) }>
+                        <img src={ OJBin } alt='Delete' />
                     </button>
                 </Col>
             </Row>

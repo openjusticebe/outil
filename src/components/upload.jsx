@@ -248,8 +248,8 @@ class UploadUi extends React.Component {
             <div className="col-12 my-5 private">
                 <div className="part-heading row">
                     <div className="mr-4">
-                        <span class="page-current">1</span>
-                        <span class="page-total">/3</span>
+                        <span className="page-current">1</span>
+                        <span className="page-total">/3</span>
                     </div>
                     <div>
                         <h2><Trans>Préparer le contenu</Trans></h2>

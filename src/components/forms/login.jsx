@@ -69,7 +69,7 @@ const LoginForm = ({ lostPasswordClick }) => {
                   onSubmit={event => { handleSubmit(event) }}
                 >
                     <Row className="justify-content-center">
-                            <h2 className=""><Trans>Connexion utilisateur</Trans></h2>
+                            <h2><Trans>Connexion utilisateur</Trans></h2>
                             <Form.Label>
                                 <Trans>Email</Trans>
                               <Form.Control name="username" required type="text" onChange={ handleUpdate } />
@@ -82,7 +82,7 @@ const LoginForm = ({ lostPasswordClick }) => {
                             </Form.Label>
                     </Row>
                     <Row className="justify-content-center">
-                        <a href="#" className="" onClick={ lostPasswordClick }><small><Trans>Mot de passe oublié</Trans></small></a>
+                        <a href="#" onClick={ lostPasswordClick }><small><Trans>Mot de passe oublié</Trans></small></a>
                     </Row>
                     <Row className="row d-flex justify-content-center mt-4">
                         <Button variant="success" type="submit" className="p-2 btn-ojact">
