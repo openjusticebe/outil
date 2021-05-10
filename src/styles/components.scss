@@ -19,6 +19,7 @@ form h2 {
     background-color: #f2f2f2;
     border-color: #f2f2f2;
     font-weight:700;
+    border-style:none;
 }
 
 .ojform input::placeholder,
@@ -26,6 +27,51 @@ form h2 {
 .ojform textarea::placeholder {
     color:#777;
     font-weight:200;
+}
+
+.ojform option {
+    width:100%;
+}
+
+.ojform select {
+  margin: 0;      
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, #777 50%),
+    linear-gradient(135deg, #777 50%, transparent 50%),
+    linear-gradient(to right, #777, #777);
+  background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+}
+
+.ojform select:focus {
+  background-image:
+    linear-gradient(45deg, $sec_color 50%, transparent 50%),
+    linear-gradient(135deg, transparent 50%, $sec_color 50%),
+    linear-gradient(to right, #777, #777);
+  background-position:
+    calc(100% - 15px) 1em,
+    calc(100% - 20px) 1em,
+    calc(100% - 2.5em) 0.5em;
+  background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+  background-repeat: no-repeat;
+  border-color: $sec_color;
+  outline: 0;
 }
 
 #content_raw {

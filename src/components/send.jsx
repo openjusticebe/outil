@@ -214,16 +214,23 @@ class SendUi extends React.Component {
                     </div>
                 </div>
                 <div className="row px-4 mt-4">
-                    <Form id="send" noValidate validated={ this.state.validated } onSubmit={ this.handleSubmit } onChange={ this.handleChange } className="pl-3">
+                    <Form
+                        id="send"
+                        noValidate
+                        validated={ this.state.validated }
+                        onSubmit={ this.handleSubmit }
+                        onChange={ this.handleChange }
+                        className="pl-3 ojform">
+
                         <fieldset className="p-3">
                             <legend className="">
                                 <img className="svg-icon" src={ OJKey } aria-hidden="true" />
-                                Propriétés du document / document eigenschappen
+                                <Trans>Propriétés du document</Trans>
                             </legend>
                             <Row>
                                 <Col className="px-4">
                                     <Form.Group controlId="myform.country">
-                                        <Form.Label>Pays / Land</Form.Label>
+                                        <Form.Label><Trans>Pays</Trans></Form.Label>
                                         <Form.Control name="country" as="select">
                                           <option>BE</option>
                                         </Form.Control>
@@ -231,7 +238,7 @@ class SendUi extends React.Component {
                                 </Col>
                                 <Col className="px-4">
                                     <Form.Group controlId="myform.lang">
-                                        <Form.Label>Langue / Taal</Form.Label>
+                                        <Form.Label><Trans>Langue</Trans></Form.Label>
                                         <Form.Control name="lang" as="select">
                                           <option value="NL">NL</option>
                                           <option value="FR">FR</option>
@@ -241,7 +248,7 @@ class SendUi extends React.Component {
                                 </Col>
                                 <Col className="px-4">
                                     <Form.Group controlId="myform.year">
-                                        <Form.Label>Année / Jaar</Form.Label>
+                                        <Form.Label><Trans>Année</Trans></Form.Label>
                                         <Form.Control name="year" as="select">
                                           { YEARS.map( year => (<option key={ year }>{ year }</option>) ) }
                                         </Form.Control>
@@ -250,12 +257,15 @@ class SendUi extends React.Component {
                             </Row>
 
                             <Form.Group controlId="myform.court">
-                                <Form.Label>Source / Bron</Form.Label>
+                                <Form.Label><Trans>Source</Trans></Form.Label>
                                 <Form.Control name="court" as="select">
                                   { COURTS.map( (group, i) => (
                                       <optgroup key={ i } label={ group.label_fr + " / " + group.label_nl }>
                                           { group.list.map((court, j) =>
-                                              <option key={ j } value={ court.id }>{ court.id } / {court.name_fr} - {court.name_nl}</option>)
+                                              <option key={ j } value={ court.id }>
+                                              {/* { useTranslation(`txt_${court.id}`) } */ }
+                                              { court.id } / {court.name_fr} - {court.name_nl}
+                                              </option>)
                                           }
                                       </optgroup>
                                   ))}
@@ -263,7 +273,7 @@ class SendUi extends React.Component {
                             </Form.Group>
 
                             <Form.Group controlId="myform.appeal">
-                                <Form.Label>Appel interjeté / Hoger beroep</Form.Label> 
+                                <Form.Label><Trans>Appel interjeté</Trans></Form.Label> 
                                 <Form.Control name="appeal" as="select">
                                   <option value="nodata" default="yes">Pas d'information / Geen informatie</option>
                                   <option value="yes">Oui / Ja</option>
@@ -272,7 +282,7 @@ class SendUi extends React.Component {
                             </Form.Group>
 
                             <Form.Group controlId="myform.labels">
-                                <Form.Label>Labels / Etiketten (catégories / categorieën)</Form.Label>
+                                <Form.Label><Trans>Labels</Trans> (<Trans>catégories</Trans>)</Form.Label>
                                 <div className="text-muted mb-1">COVID-19, anatocisme, ...</div>
                                 <ul className="labels-list">
                                   { this.state.labels.map((label, i) => (
@@ -301,7 +311,7 @@ class SendUi extends React.Component {
                         <fieldset className="p-3 mt-4 mb-4">
                             <legend className="">
                                 <img className="svg-icon" src={ OJClip } aria-hidden="true" />
-                                Liens et références vers d'autres textes
+                                <Trans>Liens et références vers d'autres textes</Trans>
                             </legend>
                             <Form.Group controlId="myform.docs">
                                 <Form.Label></Form.Label>
@@ -326,7 +336,7 @@ class SendUi extends React.Component {
                         <fieldset className="p-3 mt-4 mb-4">
                             <legend className="">
                                 <i className="icon-cog pr-2" />
-                                Données de téléchargement / Upload gegevens
+                                <Trans>Données de téléchargement</Trans>
                             </legend>
                             {/*
                             <Form.Group controlId="myform.identifier">
@@ -347,7 +357,7 @@ class SendUi extends React.Component {
                             <Form.Group controlId="myform.userkey">
                                 <Form.Label>
                                     <i className="icon-key pr-2" />
-                                    Clé Utilisateur / Gebruiker sleutel
+                                    <Trans>Clé Utilisateur</Trans>
                                 </Form.Label>
                                     <Form.Control
                                         required
@@ -356,14 +366,13 @@ class SendUi extends React.Component {
                                         placeholder="XXXXX"
                                     />
                                 <Form.Control.Feedback type="invalid">
-                                    Veuillez saisir votre clé personnelle / 
-                                    Voer uw persoonlijke sleutel in
+                                    <Trans>Veuillez saisir votre clé personnelle</Trans>
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </fieldset>
                         )}
                         { !this.state.error &&
-                        <p>La dernière étape / de laatste stap : </p>
+                        <p><Trans>La dernière étape</Trans></p>
                         }
 
                         { this.state.error &&
@@ -374,7 +383,7 @@ class SendUi extends React.Component {
                             <Button type="submit" className="btn btn-ojact p-3">
                             {this.state.waiting && <img className="loadgif" src={LoadGif} alt="loading" />}
                             <i className="icon-paper-plane pr-2" />
-                            envoyer / doorsturen
+                            <Trans>envoyer</Trans>
                             </Button>
                         </div>
                         </div>

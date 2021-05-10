@@ -8,7 +8,12 @@ function setMsg(state, action) {
 
 function NotifProvider({children}) {
     const [state, dispatch] = React.useReducer(setMsg, {msg: false, type: false});
-    const notify = (msg, type) => {dispatch({msg : msg, type : type})};
+    const notify = (msg, type) => {
+        dispatch({msg : msg, type : type});
+        // Hard coded time out, can be done better
+        let tm = type.toLowerCase() == 'info' ? 5000 : 20000;
+        setTimeout(() => dispatch({msg:false}), tm);
+    };
     const value = {state, dispatch, notify};
     return  (
         <NotificationContext.Provider value={value}>

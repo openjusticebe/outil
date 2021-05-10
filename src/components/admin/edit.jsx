@@ -4,12 +4,12 @@ import { navigate } from "gatsby";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Row, Col} from 'react-bootstrap';
+import { useQueryParam, BoolParam } from "use-query-params";
 import {YEARS, COURTS, STATUS} from '../../services/data';
 import { getAuthHeader, getToken } from "../../services/auth"
-import { useQueryParam, BoolParam } from "use-query-params";
+import {useNotification} from '../contexts/notification'
 // COMPS
 import DocLinks from "../doclink";
-
 // CSS
 
 
@@ -34,6 +34,7 @@ const Edit = ({docid}) => {
     const [saved, setSaved] = useQueryParam("saved", BoolParam);
     var labelInput = '';
     var labelController = false;
+    const {notify} = useNotification();
 
     const componentDidMount = () => {
         this.labelController = new AbortController();
@@ -73,6 +74,7 @@ const Edit = ({docid}) => {
 
     useEffect(() => {
         if (saved === 'true') {
+            notify('Modification sauvegardée', 'Info');
             // NotificationManager.success('Modifications sauvegardées', 'Info');
         }
         setSaved('false');
@@ -163,6 +165,7 @@ const Edit = ({docid}) => {
 
     const formSubmit = (event) => {
         const form = event.currentTarget;
+        setErrors(false);
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
@@ -194,8 +197,9 @@ const Edit = ({docid}) => {
         fetch(`${process.env.GATSBY_DATA_API}/d/update/${docData.id}`, {
             method: 'POST',
             headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization' : getAuthHeader(),
             },
             body: JSON.stringify(query),
             }).then(response => response.json())
@@ -204,10 +208,10 @@ const Edit = ({docid}) => {
                     navigate(`/admin/edit/${docData.id}?saved=true`)
                 else if (resultData.detail) {
                     setErrors({__html: JSON.stringify(resultData.detail)});
-                    // NotificationManager.error('Erreur de sauvegarde', 'Info');
+                    notify('Erreur de sauvegarde', 'Info');
                 } else {
                     setErrors({__html: resultData});
-                    // NotificationManager.error('Erreur de sauvegarde', 'Info');
+                    notify('Erreur de sauvegarde', 'Info');
                 }
             }).catch(error => {
                 const msg = `Erreur de serveur, Server fout: ${error.toString()}`;
