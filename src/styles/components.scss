@@ -210,3 +210,32 @@ form h2 {
     border-color:black;
 }
 
+/*********** Send and anon form
+******************************/
+
+ul.details {
+    list-style-type:none;
+    margin:1rem 0 1rem;
+    padding:0;
+}
+
+ul.details li {
+    margin:0;
+    padding:0;
+}
+
+ol.eventlog {
+    margin:0;
+    padding:0;
+    margin-left:1rem;
+    background-color:$sec_light_color;
+    font-family:monospace;
+    font-size:.8rem;
+    color:#000;
+}
+
+ol.eventlog li {
+    margin:0;
+    padding:0;
+}
+

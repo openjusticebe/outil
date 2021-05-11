@@ -263,34 +263,39 @@ class UploadUi extends React.Component {
                         state={ this.state.parse_state }
                     />
                 </div>
-                <FileData
-                    state={ this.state.parse_state }
-                    degraded={ this.state.isDegraded }
-                    meta={ this.state.file_meta }
-                />
-                <div className="row justify-content-center">
-                    { this.state.error &&
-                        <div className="log col-10 oj-error my-3">
-                            { this.state.error }
+                <div className="row justify-content-center mt-3">
+                    <div className="col-12 col-xl-3 order-first order-xl-last mb-3">
+                        <div className="stream_info col-12 bg-secondary text-white">
+                            <Trans>Détails</Trans>
                         </div>
-                    }
-                </div>
-                { this.state.ocr_streaming &&
-                    <div className="row justify-content-center">
-                        <div className="stream_info col-10 bg-secondary text-white">
-                            <i className="icon-wallet" />
-                            Pages / Pagina's : { this.state.page_current } / { this.state.pages_total }
+                        <FileData
+                            state={ this.state.parse_state }
+                            degraded={ this.state.isDegraded }
+                            meta={ this.state.file_meta }
+                        />
+                        <div className="row justify-content-center">
+                            { this.state.error &&
+                                <div className="log col-10 oj-error my-3">
+                                    { this.state.error }
+                                </div>
+                            }
                         </div>
                     </div>
-                }
-                <div className="row justify-content-center">
-                    <textarea
-                        id="content_raw"
-                        update={ this.state.uploaded }
-                        onChange={ this.handleTextChange }
-                        value ={ this.state.text }
-                        className="col-10 bigtext"
-                        />
+                    <div className="col-12 col-xl-9 order-last order-xl-first">
+                        { this.state.ocr_streaming &&
+                            <div className="stream_info col-12 bg-secondary text-white">
+                                <i className="icon-wallet" />
+                                <Trans>Pages</Trans> : { this.state.page_current } / { this.state.pages_total }
+                            </div>
+                        }
+                        <textarea
+                            id="content_raw"
+                            update={ this.state.uploaded }
+                            onChange={ this.handleTextChange }
+                            value ={ this.state.text }
+                            className="col-12 bigtext"
+                            />
+                    </div>
                 </div>
                 <div className="row justify-content-center mt-3">
                     <Form onSubmit={ this.handleSubmit } className="pl-3">
