@@ -13,7 +13,7 @@ module.exports = {
         keyAsDefaultValue: [defaultLanguage],
         useI18nextDefaultValue: [defaultLanguage],
         locales: languages,
-        discardOldKeys: true,
+        discardOldKeys: false,
         defaultNS: 'translation',
         outputPath: 'src/locales/{{locale}}/{{ns}}.json',
         customTransComponents: [['gatsby-plugin-react-i18next', 'Trans']]
