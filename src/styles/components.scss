@@ -84,7 +84,6 @@ form h2 {
 }
 
 #content_anon {
-    width:80%;
     min-height:40rem;
     padding:1rem;
     white-space:pre-wrap;
@@ -107,6 +106,10 @@ form h2 {
 .term_remove img {
     height:calc(1.5em + 0.75rem + 0px);
 }
+.pseudoform .term_remove img {
+    height:calc(1em + 0.5rem + 0px);
+}
+
 
 .term_remove:hover {
     background-color:#faa;
@@ -242,3 +245,7 @@ ol.eventlog li {
     padding:0;
 }
 
+.pseudoform input,
+.pseudoform select {
+    font-size:.7rem;
+}

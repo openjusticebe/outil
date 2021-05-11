@@ -9,22 +9,22 @@ import OJBin from "../images/bin.svg";
 import OJEye from "../images/eye.svg";
 
 const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
-    <Form id={ id }>
+    <Form id={ id } className="ojform pseudoform mt-3 mb-2">
         <div className="row">
-            <div className="col-4" >
+            <div className="col-4 col-lg-12 mb-2" >
                 <Form.Control type="text" name="text" value={ words } onChange={ onChange } />
             </div>
-            <div className="col-2">
+            <div className="col-2 col-lg-12 mb-2">
                 <Form.Control as="select" name="type" value={ type } onChange={ onChange }>
                     { PlaceholderManager.types().map( option => (
                         <option key={ option }>{ option }</option>
                     )) }
                 </Form.Control>
             </div>
-            <div className="col-4">
+            <div className="col-4 col-lg-9">
                 <Form.Control type="text" name="placeholder" value={ placeholder } onChange={ onChange }/>
             </div>
-            <div className="col-2">
+            <div className="col-2 col-lg-3">
                 <button onClick={ onRemove } className="btn term_remove">
                     <img src={ OJBin } alt={ useTranslation('delete') } />
                 </button>
@@ -59,6 +59,7 @@ const prep_text = (text) => {
 
 
 const AnonymiseUi = (props) => {
+    const {t} = useTranslation();
     return (
         <div className="anonymise col-12 mb-5">
             <div className="part-heading row">
@@ -75,26 +76,30 @@ const AnonymiseUi = (props) => {
                     </ul>
                 </div>
             </div>
-            <div className="row justify-content-center mb-2">
-                <EntityForm
-                    entities={ props.entities }
-                    onRemove={ props.entityRemove }
-                    onChange={ props.entityChange }/>
-                <Button className="btn btn-ojact" onClick={ props.entityAdd } ><Trans>Ajouter un terme</Trans></Button>
-            </div>
             <div className="row justify-content-center pt-5">
                 <h3>
                     <img className="oj_eye" src={ OJEye } aria-hidden="true" />
                     <Trans>Aperçu du document final</Trans>
                 </h3>
-                <div className="oj-info text-white px-2 mx-3 mb-3">
-                    Le texte anonymisé apparaît entre crochets : ceci facilite les traitements ultérieurs.<br />
-                    De geanonimiseerde tekst wordt tussen vierkante haken weergegeven: dit vergemakkelijkt de latere verwerking.
-                </div>
             </div>
             <div className="row justify-content-center">
-                <div id="content_anon" dangerouslySetInnerHTML={{__html: prep_text(props.preparedText) }} />
-            </div>
+                <div className="col-12 order-lg-last col-lg-3 mb-3">
+                    <div className="oj-info text-white p-2">
+                        <Trans>Pseudonymisation</Trans>
+                    </div>
+                    <EntityForm
+                        entities={ props.entities }
+                        onRemove={ props.entityRemove }
+                        onChange={ props.entityChange }/>
+                    <Button className="btn btn-ojact mt-3" onClick={ props.entityAdd } ><Trans>Ajouter un terme</Trans></Button>
+                </div>
+                <div className="col-12 orger-lg-first col-lg-9">
+                    <div className="oj-info text-white p-2">
+                        {t('txt_legend_pseudo')}
+                    </div>
+                    <div id="content_anon" dangerouslySetInnerHTML={{__html: prep_text(props.preparedText) }} />
+                    </div>
+                </div>
         </div>
     );
 }
