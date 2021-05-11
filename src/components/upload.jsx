@@ -264,7 +264,7 @@ class UploadUi extends React.Component {
                     />
                 </div>
                 <div className="row justify-content-center mt-3">
-                    <div className="col-12 col-xl-3 order-first order-xl-last mb-3">
+                    <div className="col-12 col-lg-3 order-first order-lg-last mb-3">
                         <div className="stream_info col-12 bg-secondary text-white">
                             <Trans>Détails</Trans>
                         </div>
@@ -281,7 +281,7 @@ class UploadUi extends React.Component {
                             }
                         </div>
                     </div>
-                    <div className="col-12 col-xl-9 order-last order-xl-first">
+                    <div className="col-12 col-lg-9 order-last order-lg-first">
                         { this.state.ocr_streaming &&
                             <div className="stream_info col-12 bg-secondary text-white">
                                 <i className="icon-wallet" />
