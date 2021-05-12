@@ -121,6 +121,8 @@ body {
 
 .oj-info {
     background-color: $sec_color;
+    border-top-left-radius:7px;
+    border-top-right-radius:7px;
 }
 
 .oj-error {

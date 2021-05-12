@@ -10,6 +10,7 @@ import "../styles/reset.scss"
 
 import { NotifProvider } from '../components/contexts/notification'
 import { NotifDisplay } from '../components/notification'
+import Bar from '../components/version_bar'
 
 export const NotificationContext = new React.createContext(false);
 
@@ -39,6 +40,7 @@ const Layout = ({ isAdmin, children }) => {
                     padding: `0 1.0875rem 1.45rem`,
             }}
             >
+            <Bar />
             <main>
             {children}
             </main>
