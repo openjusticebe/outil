@@ -62,24 +62,28 @@ const LoginForm = ({ lostPasswordClick }) => {
         <div className="container m-3 d-flex justify-content-center">
             <div className="col-6 mt-5">
                 <Form
-                  noValidate
-                  validated={ validated }
-                  method="post"
-                className="ojform"
-                  onSubmit={event => { handleSubmit(event) }}
+                    noValidate
+                    validated={ validated }
+                    method="post"
+                    className="ojform"
+                    onSubmit={event => { handleSubmit(event) }}
                 >
                     <Row className="justify-content-center">
+                        <div>
                             <h2><Trans>Connexion utilisateur</Trans></h2>
-                            <Form.Label>
-                                <Trans>Email</Trans>
-                              <Form.Control name="username" required type="text" onChange={ handleUpdate } />
-                            </Form.Label>
+                        </div>
                     </Row>
                     <Row className="justify-content-center">
-                            <Form.Label>
-                              <Trans>Mot de passe</Trans>
-                              <Form.Control name="password" required type="password" onChange={ handleUpdate } />
-                            </Form.Label>
+                        <Form.Label>
+                            <Trans>Email</Trans>
+                          <Form.Control name="username" required type="text" onChange={ handleUpdate } />
+                        </Form.Label>
+                    </Row>
+                    <Row className="justify-content-center">
+                        <Form.Label>
+                          <Trans>Mot de passe</Trans>
+                          <Form.Control name="password" required type="password" onChange={ handleUpdate } />
+                        </Form.Label>
                     </Row>
                     <Row className="justify-content-center">
                         <a href="#" onClick={ lostPasswordClick }><small><Trans>Mot de passe oublié</Trans></small></a>

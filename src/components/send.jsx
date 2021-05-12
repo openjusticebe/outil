@@ -373,7 +373,7 @@ class SendUi extends React.Component {
                         </fieldset>
                         )}
                         { !this.state.error &&
-                        <p><Trans>La dernière étape</Trans></p>
+                        <p><Trans>La dernière étape</Trans> !</p>
                         }
 
                         { this.state.error &&

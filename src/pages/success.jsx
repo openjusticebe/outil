@@ -1,6 +1,6 @@
 // JS
 import React  from "react";
-import { Link } from "gatsby";
+import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
 
 // COMPS
 import Layout from "../components/layout";
@@ -34,7 +34,7 @@ class SuccessPage extends React.Component {
                         <PreviewUi />
                     </div>
                     <div className="row mt-3">
-                        <Link to="/">&lt; Retour / Terug</Link> 
+                        <Link to="/">&lt; <Trans>Retour</Trans></Link> 
                     </div>
                 </div>
             </Layout>

@@ -66,6 +66,7 @@ class UploadUi extends React.Component {
             pages_total: 0,
             page_current: 0,
             file_meta: false,
+            error:false,
         })
 
         const obj = this;
@@ -304,9 +305,12 @@ class UploadUi extends React.Component {
                       <Trans>Anonymiser</Trans>
                       </Button>
                     </Form>
-                    <Form onSubmit={ this.handleTransfer} className="pl-3">
-                      <Button variant="" type="submit" className="btn-outline-ojact">
+                    <Form onSubmit={ this.handleTransfer}>
+                      <Button variant="" type="submit" className="ml-3 btn-outline-ojact">
                       <Trans>Déjà anonymisé</Trans>
+                      </Button>
+                      <Button variant="" type="submit" className="ml-3 btn-outline-ojact">
+                      <Trans>Mettre à jour le texte</Trans>
                       </Button>
                     </Form>
                 </div>

@@ -88,6 +88,7 @@
   "txt_subscribe_accept": "J'accepte les conditions d'utilisation du service",
   "txt_subscribe_main": "Vous souhaitez participer à la phase de test d'une solution de partage et de publication securisée et anonymisée de la jurisprudence ?",
   "txt_legend_pseudo": "Le texte anonymisé apparaît entre crochets : ceci facilite les traitements ultérieurs.",
+  "txt_help_pseudo":"Pour une même entité, séparez les différentes écritures avec un point-virgule.",
   "txt_listt_review": "Nouveaux Documents",
   "txt_listd_review": "Documents qui récemment soumis qui doivent être modérés avant publication.",
   "txt_listt_published": "Documents Publiés",

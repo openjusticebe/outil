@@ -47,6 +47,12 @@ const IndexPage = () => {
         setAuth('ok');
     }, [auth]);
 
+    useEffect(() => {
+        setParsedText(
+            parseText(entities, rawText)
+        );
+    }, [entities]);
+
     /////////////////////////////////////////////////////////// Text management
     ///////////////////////////////////////////////////////////////////////////
 
@@ -64,13 +70,10 @@ const IndexPage = () => {
             };
         });
 
-        const newEntities = {...entities, ..._entities}
 
         if (text) {
             setRawText(text);
-            const parsed = parseText(newEntities, text);
-            setEntities(newEntities);
-            setParsedText(parsed);
+            setEntities(entities => { return {...entities, ..._entities} });
         }
         //FIXME : do proper notification
         //if ('log_text' in log) {
@@ -80,19 +83,17 @@ const IndexPage = () => {
         //}
     }
 
-    const entitiesSet = (newEntities) => {
-        const parsed = parseText(newEntities, rawText);
-        setParsedText(parsed);
-        setEntities(newEntities);
-    }
-
     const entityRemove = async (event) => {
         let newEntities = {...entities};
         const evId = event.currentTarget.parentNode.parentNode.parentNode.id;
         if (evId in newEntities) {
             delete newEntities[evId];
         }
-        entitiesSet(newEntities);
+        setEntities(newEntities);
+    }
+
+    const entityClean = async(event) => {
+        setEntities({});
     }
 
     const entityAdd = async (event) => {
@@ -115,8 +116,7 @@ const IndexPage = () => {
             newEntities[id][field] = event.target.value;
         }
         
-        const parsed = parseText(newEntities, rawText)
-        entitiesSet(newEntities);
+        setEntities(newEntities);
     }
 
     return (
@@ -175,6 +175,7 @@ const IndexPage = () => {
                             textChange = { (event) => { setParsedText(event.target.value) } }
                             entityRemove = { entityRemove }
                             entityAdd = { entityAdd }
+                            entityClean = { entityClean }
                             entityChange = { entityUpdate }
                             hashKey={'anonymise'} />
                     <SendUi uploadedText = { parsedText } hashKey={'send'} />

@@ -11,20 +11,27 @@ import OJEye from "../images/eye.svg";
 const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
     <Form id={ id } className="ojform pseudoform mt-3 mb-2">
         <div className="row">
-            <div className="col-4 col-lg-12 mb-2" >
-                <Form.Control type="text" name="text" value={ words } onChange={ onChange } />
+            <div className="col-8 col-xl-12 mb-2" >
+                <Form.Control
+                    type="text"
+                    name="text"
+                    placeholder="S. Dupont ; Sam D. ; Mr Dupont"
+                    value={ words }
+                    onChange={ onChange } />
             </div>
-            <div className="col-2 col-lg-12 mb-2">
+            {/*
+            <div className="col-3 col-lg-12 mb-2">
                 <Form.Control as="select" name="type" value={ type } onChange={ onChange }>
                     { PlaceholderManager.types().map( option => (
                         <option key={ option }>{ option }</option>
                     )) }
                 </Form.Control>
             </div>
-            <div className="col-4 col-lg-9">
+            */}
+            <div className="col-3 col-xl-9">
                 <Form.Control type="text" name="placeholder" value={ placeholder } onChange={ onChange }/>
             </div>
-            <div className="col-2 col-lg-3">
+            <div className="col-1 col-xl-3">
                 <button onClick={ onRemove } className="btn term_remove">
                     <img src={ OJBin } alt={ useTranslation('delete') } />
                 </button>
@@ -35,7 +42,7 @@ const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
 
 
 const EntityForm = ({entities, onRemove, onChange}) => (
-        <div className="container anonOpts">
+        <div className="container overflow-auto anonOpts">
             { Object.keys(entities).map( id => {
                 return (
                     <EntityRow
@@ -83,17 +90,29 @@ const AnonymiseUi = (props) => {
                 </h3>
             </div>
             <div className="row justify-content-center">
-                <div className="col-12 order-lg-last col-lg-3 mb-3">
+                <div className="col-12 order-xl-last col-xl-3 mb-3">
                     <div className="oj-info text-white p-2">
                         <Trans>Pseudonymisation</Trans>
+                    </div>
+                    <div className="oj-help p-2">
+                        {t('txt_help_pseudo')}
                     </div>
                     <EntityForm
                         entities={ props.entities }
                         onRemove={ props.entityRemove }
                         onChange={ props.entityChange }/>
-                    <Button className="btn btn-ojact mt-3" onClick={ props.entityAdd } ><Trans>Ajouter un terme</Trans></Button>
+                    <Button
+                        className="btn btn-ojact mt-3 col-5 col-xl-10 mx-3"
+                        onClick={ props.entityAdd } >
+                        <Trans>Ajouter un terme</Trans>
+                    </Button>
+                    <Button
+                        className="btn btn-outline-ojact mt-3 col-5 col-xl-10 mx-3"
+                        onClick={ props.entityClean } >
+                        <Trans>Vider la liste</Trans>
+                    </Button>
                 </div>
-                <div className="col-12 orger-lg-first col-lg-9">
+                <div className="col-12 orger-xl-first col-xl-9">
                     <div className="oj-info text-white p-2">
                         {t('txt_legend_pseudo')}
                     </div>

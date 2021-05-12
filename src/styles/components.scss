@@ -89,7 +89,7 @@ form h2 {
     white-space:pre-wrap;
     background-color:#f9f7f7;
     border:3px solid #ddd;
-    max-height:50rem;
+    max-height:45rem;
     overflow:scroll;
 }
 
@@ -184,6 +184,7 @@ form h2 {
 .labels-list input {
     height:2rem;
     width:20rem;
+    padding:1rem;
 }
 
 .sublabels {
@@ -248,4 +249,14 @@ ol.eventlog li {
 .pseudoform input,
 .pseudoform select {
     font-size:.7rem;
+}
+
+.anonOpts {
+    min-height:0rem;
+    max-height:40rem;
+}
+
+.oj-help {
+    color:$main_color;
+    font-size:.9rem;
 }
