@@ -75,7 +75,7 @@ const SubscribeForm = () => {
         <div>
             <Form noValidate
                 id="subscribe"
-                className="pl-3 ojform"
+                className="pl-3 ojform mt-3"
                 validated={ validated }
                 onSubmit={ handleSubmit }
                 onChange={ handleChange }
@@ -143,7 +143,12 @@ const SubscribeForm = () => {
                     </Form.Group>
 
                     <Form.Group controlId="agree">
-                        <Form.Check required type="checkbox" label={ t('txt_subscribe_accept') }/>
+                        <Form.Label>
+                            <Form.Check required type="checkbox" style={{ display:"inline"}} className="mr-2"/>
+                            <Trans>J'accepte les</Trans> <a href="https://www.notion.so/openjustice/Terms-of-use-4f32e4d47f8a406496f4ad034f3258a7">
+                                <Trans>conditions d'utilisation</Trans>.
+                            </a>
+                        </Form.Label>
                     </Form.Group>
 
                 <Button variant="primary" type="submit" className="btn-ojact">
