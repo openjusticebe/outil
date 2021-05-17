@@ -7,7 +7,8 @@
   "Année": "Jahr",
   "Anonymiser": "Anonymisieren",
   "Aperçu du document final": "Übersicht über das endgültige Dokument",
-  "Appel interjeté": "",
+  "Appel interjeté": "In Berufung",
+  "Bravo !": "Super !",
   "Caractères": "Zeichen",
   "Chargement": "Laden",
   "Choisir un fichier": "Wählen Sie eine Datei",
@@ -32,6 +33,7 @@
   "Information": "Informationen",
   "Inscription": "Anmeldung",
   "Intérêt pour OpenJustice": "Interesse an OpenJustice",
+  "J'accepte les": "Ich akzeptiere die",
   "La dernière étape": "Der letzte Schritt",
   "Labels": "Etiketten",
   "Langue": "Sprache",
@@ -67,6 +69,7 @@
   "Vider la liste": "Leeren Sie die Liste",
   "Vérifier l'anonymisation": "Anonymisierung verifizieren",
   "catégories": "Kategorien",
+  "conditions d'utilisation": "Nutzungsbedingungen ",
   "envoyer": "senden",
   "opt-Juriste": "Rechtsanwalt",
   "opt-académicien": "Akademiker",
@@ -104,6 +107,7 @@
   "txt_password_lost": "Dieses Formular sendet einen Link an Ihre E-Mail-Adresse, um Ihr Passwort zurückzusetzen.",
   "txt_password_sent": "Reset-Link gesendet",
   "txt_subscribe_accept": "Ich akzeptiere die Servicebedingungen",
-  "url_manual": "https://pad.openjustice.be/s/kwZheAXhI#",
-  "txt_subscribe_main": "Wollen Sie an der Testphase einer Lösung für den Austausch und die Veröffentlichung von Rechtsprechung in einer sicheren und anonymen Weise teilnehmen?"
+  "txt_subscribe_main": "Wollen Sie an der Testphase einer Lösung für den Austausch und die Veröffentlichung von Rechtsprechung in einer sicheren und anonymen Weise teilnehmen?",
+  "txt_success": "Ihr Dokument wartet nun auf Überprüfung und Validierung, bevor es in die öffentliche Datenbank integriert wird.",
+  "url_manual": "https://pad.openjustice.be/s/kwZheAXhI#"
 }

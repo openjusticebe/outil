@@ -41,11 +41,13 @@ ul.languages li:last-child a {
 
 ul.languages a.selected {
     background-color:$sec_color;
+    border-bottom-color: $sec_color;
     color:#fff;
 }
 
 ul.languages a:hover {
     background-color:$main_color;
+    border-bottom-color: $main_color;
     color: #fff;
     text-decoration:none;
 }
