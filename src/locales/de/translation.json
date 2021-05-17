@@ -104,5 +104,6 @@
   "txt_password_lost": "Dieses Formular sendet einen Link an Ihre E-Mail-Adresse, um Ihr Passwort zurückzusetzen.",
   "txt_password_sent": "Reset-Link gesendet",
   "txt_subscribe_accept": "Ich akzeptiere die Servicebedingungen",
+  "url_manual": "https://pad.openjustice.be/s/kwZheAXhI#",
   "txt_subscribe_main": "Wollen Sie an der Testphase einer Lösung für den Austausch und die Veröffentlichung von Rechtsprechung in einer sicheren und anonymen Weise teilnehmen?"
 }

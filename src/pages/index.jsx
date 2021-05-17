@@ -153,7 +153,7 @@ const IndexPage = () => {
                             <br /><b>{ t('txt_index_upload_bis') }</b>
                         </p>
                         <p className="mt-4">
-                            <a href="https://pad.openjustice.be/s/kwZheAXhI#"><Trans>Manuel d'utilisation</Trans></a>
+                            <a href={ t('url_manual') }><Trans>Manuel d'utilisation</Trans></a>
                         </p>
                     </div>
                 </div>
