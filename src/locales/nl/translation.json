@@ -71,6 +71,7 @@
   "catégories": "categorieën",
   "conditions d'utilisation": "gebruiksvoorwaarden",
   "envoyer": "Verzenden",
+  "msg_account_created": "Gebruikersaccount aangemaakt",
   "opt-Juriste": "Jurist",
   "opt-académicien": "academicus",
   "opt-autre": "overige",
@@ -109,6 +110,5 @@
   "txt_subscribe_accept": "Ik aanvaar de dienstvoorwaarden",
   "txt_subscribe_main": "Wilt u deelnemen aan de testfase van een oplossing om jurisprudentie op een veilige en anonieme manier te delen en te publiceren?",
   "txt_success": "Uw document wacht nu op verificatie en validatie voor dat het word geintegreerd in de openbare databank.",
-  "url_manual": "https://pad.openjustice.be/s/wQQ_aoyUQ#",
-  "msg_account_created": "Gebruikersaccount aangemaakt"
+  "url_manual": "https://pad.openjustice.be/s/wQQ_aoyUQ#"
 }
