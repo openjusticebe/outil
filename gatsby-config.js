@@ -84,7 +84,7 @@ module.exports = {
                 i18nextOptions: {
                     defaultNS: 'translation',
                     lowerCaseLng: true,
-                    debug: true,
+                    debug: false,
                     interpolation: {
                         escapeValue: false // not needed for react as it escapes by default
                     },
