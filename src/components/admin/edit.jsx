@@ -4,7 +4,7 @@ import { navigate } from "gatsby";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Row, Col} from 'react-bootstrap';
-import { useQueryParam, BoolParam } from "use-query-params";
+import { useQueryParam, BooleanParam } from "use-query-params";
 import {YEARS, COURTS, STATUS} from '../../services/data';
 import { getAuthHeader, getToken } from "../../services/auth"
 import {useNotification} from '../contexts/notification'
@@ -31,7 +31,7 @@ const Edit = ({docid}) => {
     const [userData, setUserData] = useState([]);
     const [viewData, setViewData] = useState([]);
     const docLinkBlank = {kind:'eli', link:'', label:''};
-    const [saved, setSaved] = useQueryParam("saved", BoolParam);
+    const [saved, setSaved] = useQueryParam("saved", BooleanParam);
     var labelInput = '';
     var labelController = false;
     const {notify} = useNotification();
