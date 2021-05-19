@@ -20,18 +20,18 @@ module.exports = {
         },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
-        //{
-        //  resolve: `gatsby-plugin-manifest`,
-        //  options: {
-        //    name: `gatsby-starter-default`,
-        //    short_name: `starter`,
-        //    start_url: `/`,
-        //    background_color: `#2d4059`,
-        //    theme_color: `#2d4059`,
-        //    display: `minimal-ui`,
-        //    icon: `src/images/openjustice-icon.png`, // This path is relative to the root of the site.
-        //  },
-        //},
+        {
+          resolve: `gatsby-plugin-manifest`,
+          options: {
+            name: `OpenJustice.be Outil`,
+            short_name: `Outil`,
+            start_url: `/`,
+            background_color: `#17b5b4`,
+            theme_color: `#17b5b4`,
+            display: `minimal-ui`,
+            icon: `src/assets/favicon/favicon-32x32.png`, // This path is relative to the root of the site.
+          },
+        },
         //{
         //  resolve: 'gatsby-plugin-matomo',
         //  options: {
