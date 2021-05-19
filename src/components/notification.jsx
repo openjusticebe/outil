@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useEffect } from "react";
 import {useNotification} from './contexts/notification'
 
 function NotifDisplay() {
@@ -24,4 +24,18 @@ function Notify( message, type ) {
     setTimeout( () => dispatch({msg: false}), time * 100);
 }
 
-export {NotifDisplay, Notify}
+const NotifElement = ({msg}) => {
+    const {notify} = useNotification();
+
+    useEffect(() => {
+        if (msg != '') {
+            notify(msg, 'Info');
+        }
+    }, [msg]);
+
+    return (
+        <div></div>
+    );
+}
+
+export {NotifDisplay, Notify, NotifElement}

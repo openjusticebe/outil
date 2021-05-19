@@ -109,5 +109,6 @@
   "txt_subscribe_accept": "J'accepte les conditions d'utilisation du service",
   "txt_subscribe_main": "Vous souhaitez participer à la phase de test d'une solution de partage et de publication securisée et anonymisée de la jurisprudence ?",
   "txt_success": "Votre document attend désormais vérification et validation avant d'être intégré dans la banque de données publique.",
-  "url_manual": "https://pad.openjustice.be/s/kwZheAXhI#"
+  "url_manual": "https://pad.openjustice.be/s/kwZheAXhI#",
+  "msg_account_created": "Compte utilisateur créée"
 }

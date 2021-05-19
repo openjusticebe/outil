@@ -6,6 +6,7 @@ import { useQueryParam, StringParam } from "use-query-params";
 import { getUser, isLoggedIn, logout, logcheck } from "../services/auth"
 import parseText from "../services/parser.js";
 import PlaceholderManager from "../services/placeholder.js";
+import {NotifElement} from '../components/notification'
 // COMPS
 import Layout from "../components/layout";
 import SEO from '../components/seo';
@@ -25,6 +26,7 @@ const IndexPage = () => {
     const {t} = useTranslation();
     const {navigate} = useI18next()
     const [auth, setAuth] = useQueryParam("auth", StringParam);
+    const [msg, setMsg] = useState('');
 
     const [rawText, setRawText] = useState('...');
     const [parsedText, setParsedText] = useState('...');
@@ -34,6 +36,9 @@ const IndexPage = () => {
         switch(auth) {
             case 'reset':
                 logout(() => navigate(`/login`));
+                break;
+            case 'subscribed':
+                setMsg(t('msg_account_created'));
                 break;
             default:
                 break;
@@ -182,6 +187,7 @@ const IndexPage = () => {
                             
                 </div>
             </div>
+            <NotifElement msg = { msg } />
         </Layout>
     );
 }
