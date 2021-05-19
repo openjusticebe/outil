@@ -8,6 +8,7 @@ import UserMenu from "../components/header_profile";
 import '../styles/header.scss';
 // IMG
 import OJLogo from "../images/openjustice_tq.png";
+import OutilLogo from "../images/Outil_black.png";
 
 const Header = ({isAdmin, siteTitle}) => {
     const {languages, originalPath, t} = useI18next();
@@ -17,7 +18,8 @@ const Header = ({isAdmin, siteTitle}) => {
         <header className="main-header">
             <nav className="sub-header-main">
                 <Link to="/" className="home">
-                    <img src={ OJLogo } style={{ "width": 190, "height": 'auto' }} alt={ siteTitle }/>
+                    <img className="i1" src={ OutilLogo } alt={ siteTitle }/>
+                    <img className="i2 d-none d-lg-inline" src={ OJLogo } alt={ siteTitle }/>
                 </Link>
                 <ul className="navigation" >
                   <li className="nav-item mx-3"><GatsbyLink className="nav-link" to="https://openjustice.be"><Trans>Information</Trans></GatsbyLink></li>

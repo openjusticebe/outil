@@ -40,7 +40,6 @@ const Layout = ({ isAdmin, children }) => {
                     padding: `0 1.0875rem 1.45rem`,
             }}
             >
-            <Bar />
             <main>
             {children}
             </main>
@@ -49,6 +48,7 @@ const Layout = ({ isAdmin, children }) => {
                 //<NotificationContainer />
                 //<Footer />
             }
+            <Bar />
         </NotifProvider>
         </div>
     )
