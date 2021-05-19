@@ -3,14 +3,24 @@
 header.main-header {
     background-color: $background;
     display:flex;
-    flex-direction:row nowrap;
+    flex-direction:row wrap;
     justify-content:space-between;
 }
 a.home {
     margin:0;
     padding:0;
-    margin-left:.5rem;
-    margin-top:-1rem;
+    margin-left:1.1rem;
+    margin-top:-2rem;
+    max-height:48px;
+    min-width:100px;
+    flex-grow:2;
+
+    img {
+        //height:auto;
+        //width:120px;
+        height:42px;
+        width:auto;
+    }
 }
 
 ul.languages {
@@ -41,11 +51,13 @@ ul.languages li:last-child a {
 
 ul.languages a.selected {
     background-color:$sec_color;
+    border-bottom-color: $sec_color;
     color:#fff;
 }
 
 ul.languages a:hover {
     background-color:$main_color;
+    border-bottom-color: $main_color;
     color: #fff;
     text-decoration:none;
 }
@@ -88,7 +100,7 @@ ul.navigation {
 
 ul.navigation a {
     color:$main_color;
-    font-family: $main_font;
+    font-family: $title_font;
     border-bottom: 2px solid transparent;
 }
 

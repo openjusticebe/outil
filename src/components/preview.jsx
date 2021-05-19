@@ -12,7 +12,7 @@ const PreviewUi = ()  => {
     const { hash: hash} = query;
 
     return (
-        <div className="col-12 mb-5 shadow rounded border py-3 my-3">
+        <div className="col-5 mb-5 shadow rounded border py-3 my-3">
             <p><Trans>Lien personnel</Trans><br />
                 <a href={ `${process.env.GATSBY_DATA_API}/hash/${hash}` } rel="no-follow">
                     { `${process.env.GATSBY_DATA_API}/hash/${hash}` }

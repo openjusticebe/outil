@@ -40,9 +40,10 @@ body img {
 
 h1, h2, h3, h4, h5 {
     color: $title-color !important;
+    font-family: $main_font !important;
 }
 
-h1, h2, h3, h4, h5, div, p {
+div, p {
     font-family: $main_font !important;
 }
 

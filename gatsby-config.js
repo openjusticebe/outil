@@ -130,6 +130,11 @@ module.exports = {
                       variants: ['200', '400', '700', '900'],
                       formats: [ "woff", "woff2" ],
                     },
+                    {
+                      family: `Kumbh Sans`,
+                      variants: ['300', '400', '700'],
+                      formats: [ "woff", "woff2" ],
+                    },
             ]},
           },
         },
