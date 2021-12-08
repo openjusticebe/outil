@@ -27,6 +27,7 @@
     "react-dropzone": "^11.3.2",
     "react-helmet": "^6.1.0",
     "react-i18next": "^11.8.10",
+    "react-string-replace": "^0.4.4",
     "sass": "^1.32.8",
     "use-query-params": "^1.2.2"
   },

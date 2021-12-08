@@ -123,6 +123,19 @@ const IndexPage = () => {
         
         setEntities(newEntities);
     }
+    
+    const entitySelect = async (event) => {
+        const obj = event.target.dataset;
+        const formObj = document.querySelector(`[data-entity="${obj.entity}"]`);
+        formObj.scrollIntoView({ behavior: 'smooth'});
+        formObj.animate ([
+            {backgroundColor: '#f88'},
+            {backgroundColor: 'transparent'}
+        ], {
+            duration: 3000,
+            iterations: 1
+        })
+    }
 
     return (
         <Layout>
@@ -182,6 +195,7 @@ const IndexPage = () => {
                             entityAdd = { entityAdd }
                             entityClean = { entityClean }
                             entityChange = { entityUpdate }
+                            entitySelect = { entitySelect }
                             hashKey={'anonymise'} />
                     <SendUi uploadedText = { parsedText } hashKey={'send'} />
                             

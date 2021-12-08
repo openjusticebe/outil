@@ -9,7 +9,7 @@ import OJBin from "../images/bin.svg";
 import OJEye from "../images/eye.svg";
 
 const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
-    <Form id={ id } className="ojform pseudoform mt-3 mb-2">
+    <Form id={ id } className="ojform pseudoform mt-3 mb-2" data-entity={ placeholder }>
         <div className="row">
             <div className="col-8 col-xl-12 mb-2" >
                 <Form.Control
@@ -40,6 +40,8 @@ const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
     </Form>
 );
 
+const reactStringReplace = require('react-string-replace')
+
 
 const EntityForm = ({entities, onRemove, onChange}) => (
         <div className="container overflow-auto anonOpts">
@@ -59,8 +61,15 @@ const EntityForm = ({entities, onRemove, onChange}) => (
         </div>
 );
 
+const EntitySpan = (match, i, clickCallback) => {
+    const placeholder = match.substring(1, match.indexOf(']')).trim();
+    return (
+        <span id={ placeholder + '-' + i} className="anon" data-entity={ placeholder } onClick={ clickCallback }>{ match }</span>
+    )
+};
+
 const prep_text = (text) => {
-    let prep_text = text.replace(/(\[ [^ \]]+ \])/g,'<span class="anon">$1</span>', text);
+    let prep_text = text.replace(/(\[ ([^ \]]+) \])/g,'<span class="anon" data-entity="$2">$1</span>', text);
     return prep_text;
 }
 
@@ -116,9 +125,20 @@ const AnonymiseUi = (props) => {
                     <div className="oj-info text-white p-2">
                         {t('txt_legend_pseudo')}
                     </div>
-                    <div id="content_anon" dangerouslySetInnerHTML={{__html: prep_text(props.preparedText) }} />
+        {/*
+                    <div id="content_anon" dangerouslySetInnerHTML={{__html: prep_text(props.preparedText) }} >
+                    </div>
+        */}
+
+                    <div id="content_anon">
+                        {
+                            reactStringReplace(props.preparedText, /(\[ [^ \]]+ \])/g, (match, i) => (
+                                EntitySpan(match, i, props.entitySelect)
+                            ))
+                        }
                     </div>
                 </div>
+            </div>
         </div>
     );
 }
