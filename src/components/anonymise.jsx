@@ -74,17 +74,18 @@ const EntityForm = ({entities, onRemove, onChange}) => (
  */
 
 const AppLeft = ({Callback, entity, op, value}) => (
-    <a class='modEntity' onClick={ (e) => {e.stopPropagation(); Callback(entity, op, value)} }>&lt;</a>
+    <button class='modEntity' onClick={ (e) => {e.stopPropagation(); Callback(entity, op, value)} }>&lt;</button>
 )
 
 const AppRight = ({Callback, entity, op, value}) => (
-    <a class='modEntity' onClick={ (e) => {e.stopPropagation(); Callback(entity, op, value)} }>&gt;</a>
+    <button class='modEntity' onClick={ (e) => {Callback(entity, op, value); e.stopPropagation()} }>&gt;</button>
 )
 
 const EntitySpan = (match, i, clickCallback, modCallback) => {
-    const placeholder = match.substring(2, match.indexOf(']')).trim();
-    const leftChar = match.charAt(0);
-    const rightChar = match.charAt(match.length - 1);
+    const placeholder = match.substring(match.indexOf('[') + 1, match.indexOf(']')).trim();
+    const leftChar = match.charAt(0) != '[' ? match.charAt(0) : '';
+    const rightChar = match.charAt(match.length - 1) != ']' ? match.charAt(match.length - 1) : '';
+
     return (
         <>
         {leftChar}
@@ -161,7 +162,7 @@ const AnonymiseUi = (props) => {
 
                     <div id="content_anon">
                         {
-                            reactStringReplace(props.preparedText, /(.\[ [^ \]]+ \].)/g, (match, i) => (
+                            reactStringReplace(props.preparedText, /(.?\[ [^ \]]+ \].?)/g, (match, i) => (
                                 EntitySpan(match, i, props.entitySelect, props.entityModify)
                             ))
                         }

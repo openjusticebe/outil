@@ -9,8 +9,8 @@ const parseText = (entities, raw) => {
         for (let index = 0; index < e_text.length; index++) {
             if (e_text[index].length < 3)
                 continue;
-            //let txt  = e_text[index].replace(wh, '\\s+').replace('.', '\\.');
-            let txt  = e_text[index].replace('.', '\\.');
+            let txt  = e_text[index].replace(wh, '\\s+').replace('.', '\\.');
+            //let txt  = e_text[index].replace('.', '\\.');
             let re = new RegExp(txt, "gi");
             raw = raw
                 // .replaceAll(/`qu'(?=${w})`/g, 'que ')

@@ -105,8 +105,12 @@ const IndexPage = () => {
         let len = Object.keys(entities).length + 1;
         let newkey = `entity#${len}`;
         let newEntities = {...entities};
+        let userSelected = window.getSelection().toString();
+        window.getSelection().empty();
+        let newText = userSelected != '' ? userSelected : '';
+
         newEntities[newkey] = {
-            'text':[],
+            'text': newText,
             'type':'person',
             'placeholder': PlaceholderManager.get('person', newkey)
         };
@@ -126,6 +130,7 @@ const IndexPage = () => {
     
     const entitySelect = async (event) => {
         if (event.target.tagName !== 'SPAN') {
+            console.log('coucou');
             return;
         }
 
@@ -151,11 +156,16 @@ const IndexPage = () => {
 
         let newEntities = {...entities};
 
+        let userSelected = window.getSelection().toString();
+        window.getSelection().empty();
+
+        let newValue = userSelected != '' ? userSelected : value;
+
         if (id in newEntities) {
             let prevValue = newEntities[id]['text'].split('');
             switch(operation) {
                 case 'unshift':
-                    prevValue.unshift(value);
+                    prevValue.unshift(newValue);
                     break;
                 case 'shift' :
                     prevValue.shift();
@@ -164,7 +174,7 @@ const IndexPage = () => {
                     prevValue.pop();
                     break;
                 case 'push':
-                    prevValue.push(value);
+                    prevValue.push(newValue);
                     break
                 }
             newEntities[id]['text'] = prevValue.join('');
