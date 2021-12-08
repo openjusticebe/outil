@@ -61,17 +61,46 @@ const EntityForm = ({entities, onRemove, onChange}) => (
         </div>
 );
 
-const EntitySpan = (match, i, clickCallback) => {
-    const placeholder = match.substring(1, match.indexOf(']')).trim();
+
+/* The next bits allow live updating of a entity. It's a bit hacky : I'm still discovering the 
+ * ins and outs of this approach *
+ * FIXME: absolutely incompatible with multi-string text boxes */
+
+/* 4 ways to update :
+ * append left - unshift
+ * remove left - shift
+ * append right - push
+ * remove right - pop
+ */
+
+const AppLeft = ({Callback, entity, op, value}) => (
+    <a class='modEntity' onClick={ (e) => {e.stopPropagation(); Callback(entity, op, value)} }>&lt;</a>
+)
+
+const AppRight = ({Callback, entity, op, value}) => (
+    <a class='modEntity' onClick={ (e) => {e.stopPropagation(); Callback(entity, op, value)} }>&gt;</a>
+)
+
+const EntitySpan = (match, i, clickCallback, modCallback) => {
+    const placeholder = match.substring(2, match.indexOf(']')).trim();
+    const leftChar = match.charAt(0);
+    const rightChar = match.charAt(match.length - 1);
     return (
-        <span id={ placeholder + '-' + i} className="anon" data-entity={ placeholder } onClick={ clickCallback }>{ match }</span>
+        <>
+        {leftChar}
+        <span
+            id={ placeholder + '-' + i}
+            className="anon"
+            data-entity={ placeholder }
+            onClick={ clickCallback }>
+            <AppLeft entity={ placeholder } Callback={ modCallback } value={leftChar} op="unshift"/>[<AppRight entity={ placeholder } Callback={modCallback} value="" op="shift"/>
+            &nbsp;{ placeholder }&nbsp;
+            <AppLeft entity={ placeholder } Callback={ modCallback } value="" op="pop"/>]<AppRight entity={ placeholder } Callback={modCallback} value={rightChar} op="push"/>
+        </span>
+        {rightChar}
+        </>
     )
 };
-
-const prep_text = (text) => {
-    let prep_text = text.replace(/(\[ ([^ \]]+) \])/g,'<span class="anon" data-entity="$2">$1</span>', text);
-    return prep_text;
-}
 
 
 const AnonymiseUi = (props) => {
@@ -132,8 +161,8 @@ const AnonymiseUi = (props) => {
 
                     <div id="content_anon">
                         {
-                            reactStringReplace(props.preparedText, /(\[ [^ \]]+ \])/g, (match, i) => (
-                                EntitySpan(match, i, props.entitySelect)
+                            reactStringReplace(props.preparedText, /(.\[ [^ \]]+ \].)/g, (match, i) => (
+                                EntitySpan(match, i, props.entitySelect, props.entityModify)
                             ))
                         }
                     </div>

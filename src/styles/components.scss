@@ -95,8 +95,32 @@ form h2 {
     overflow:scroll;
 }
 
-#content_anon .anon {
-    background-color:#ffd400;
+#content_anon {
+    .anon {
+        background-color:#ffd400;
+
+        .modEntity {
+            display:none;
+        }
+    }
+
+    .anon.selected {
+        background-color:#3ddef7;
+        .modEntity {
+            display:inline;
+        }
+    }
+
+    .modEntity {
+        cursor:pointer;
+        text-decoration:none;
+        color:black;
+    }
+
+    .modEntity:hover {
+        background-color:black;
+        color:#fff;
+    }
 }
 
 .term_remove {

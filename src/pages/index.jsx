@@ -125,6 +125,14 @@ const IndexPage = () => {
     }
     
     const entitySelect = async (event) => {
+        if (event.target.tagName !== 'SPAN') {
+            return;
+        }
+
+        var element = document.querySelector(".selected");
+        element.classList.remove("selected");
+
+        event.target.classList.add('selected');
         const obj = event.target.dataset;
         const formObj = document.querySelector(`[data-entity="${obj.entity}"]`);
         formObj.scrollIntoView({ behavior: 'smooth'});
@@ -134,7 +142,34 @@ const IndexPage = () => {
         ], {
             duration: 3000,
             iterations: 1
-        })
+        });
+    }
+
+    const entityModify = (entity, operation, value) => {
+        const formObj = document.querySelector(`[data-entity="${entity}"]`);
+        let id = formObj.id;
+
+        let newEntities = {...entities};
+
+        if (id in newEntities) {
+            let prevValue = newEntities[id]['text'].split('');
+            switch(operation) {
+                case 'unshift':
+                    prevValue.unshift(value);
+                    break;
+                case 'shift' :
+                    prevValue.shift();
+                    break;
+                case 'pop':
+                    prevValue.pop();
+                    break;
+                case 'push':
+                    prevValue.push(value);
+                    break
+                }
+            newEntities[id]['text'] = prevValue.join('');
+            setEntities(newEntities);
+        }
     }
 
     return (
@@ -196,6 +231,7 @@ const IndexPage = () => {
                             entityClean = { entityClean }
                             entityChange = { entityUpdate }
                             entitySelect = { entitySelect }
+                            entityModify = { entityModify }
                             hashKey={'anonymise'} />
                     <SendUi uploadedText = { parsedText } hashKey={'send'} />
                             
