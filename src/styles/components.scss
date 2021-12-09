@@ -96,20 +96,27 @@ form h2 {
 }
 
 #content_anon {
+    z-index:0;
     .modEntity {
         display:none;
     }
 
     .anon {
         background-color:#ffd400;
-        border: 3px solid #ffd400;
+        border: 3px solid #f9f7f7;
         padding:0 0 2px;
         border-radius:4px;
-
-
     }
 
+    .anon_container {
+        z-index:1;
+    }
+
+
     .selected {
+        z-index:100;
+        position:relative;
+
         .anon {
             background-color:#ffd400;
             border-color:#000;
@@ -117,6 +124,12 @@ form h2 {
 
         .modEntity {
             display:inline;
+        }
+
+
+        .modEntity:hover svg {
+            color:#f33;
+
         }
     }
 
@@ -126,19 +139,13 @@ form h2 {
         color:black;
         background:none;
         border:none;
-    }
-
-    .modEntity:hover {
-        background-color:#fff;
-        color:red;
-
-        img svg {
-            color:red;
+        svg {
+            height:1rem;
         }
-    }
+}
+
 
     .small_arrow {
-        height:.9rem;
     }
 }
 
@@ -178,6 +185,12 @@ form h2 {
 
 .anonOpts form {
     margin-bottom:.3rem;
+    border: 2px solid transparent;
+}
+
+.anonOpts form.selected {
+    border: 2px solid #5e81f4;
+    border-radius:4px;
 }
 
 

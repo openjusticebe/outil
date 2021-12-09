@@ -94,7 +94,13 @@ const IndexPage = () => {
         if (evId in newEntities) {
             delete newEntities[evId];
         }
+
+        document.querySelectorAll(".selected")?.forEach(obj =>
+            obj.classList.remove("selected")
+        );
+
         setEntities(newEntities);
+        event.stopPropagation();
     }
 
     const entityClean = async(event) => {
@@ -115,6 +121,7 @@ const IndexPage = () => {
             'placeholder': PlaceholderManager.get('person', newkey)
         };
         setEntities(newEntities);
+        event.stopPropagation();
     }
 
     const entityUpdate = async (event) => {
@@ -126,30 +133,35 @@ const IndexPage = () => {
         }
         
         setEntities(newEntities);
+        event.stopPropagation();
     }
     
     const entitySelect = async (event) => {
         if (event.target.tagName !== 'SPAN') {
-            console.log('coucou');
             return;
         }
+        event.stopPropagation();
 
-        var element = document.querySelector(".selected");
-        if (element != null) {
-            element.classList.remove("selected");
-        }
+        document.querySelectorAll(".selected")?.forEach(obj =>
+            obj.classList.remove("selected")
+        );
 
         event.target.parentNode.classList.add('selected');
         const obj = event.target.dataset;
         const formObj = document.querySelector(`[data-entity="${obj.entity}"]`);
-        formObj.scrollIntoView({ behavior: 'smooth'});
+        formObj.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+        });
         formObj.animate ([
-            {backgroundColor: '#f88'},
+            {backgroundColor: '#5e81f4'},
             {backgroundColor: 'transparent'}
         ], {
             duration: 3000,
             iterations: 1
         });
+
+        formObj.classList.add('selected');
     }
 
     const entityModify = (entity, operation, value) => {

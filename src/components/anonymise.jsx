@@ -5,8 +5,8 @@ import Button from 'react-bootstrap/Button';
 import PlaceholderManager from "../services/placeholder.js";
 import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
 // IMG
-import OJBin from "../images/bin.svg";
-import OJEye from "../images/eye.svg";
+import OJBin from "../assets/svg/bin.svg";
+import OJEye from "../assets/svg/eye.svg";
 import ArrLeft from "../assets/svg/arrow_small_left.svg";
 import ArrRight from "../assets/svg/arrow_small_right.svg";
 
@@ -34,8 +34,8 @@ const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
                 <Form.Control type="text" name="placeholder" value={ placeholder } onChange={ onChange }/>
             </div>
             <div className="col-1 col-xl-3">
-                <button onClick={ onRemove } className="btn term_remove">
-                    <img src={ OJBin } alt={ useTranslation('delete') } />
+                <button onClick={ onRemove } className="btn ojbin term_remove">
+                    <OJBin  alt={ useTranslation('delete') } />
                 </button>
             </div>
         </div>
@@ -130,7 +130,7 @@ const AnonymiseUi = (props) => {
             </div>
             <div className="row justify-content-center pt-5">
                 <h3>
-                    <img className="oj_eye" src={ OJEye } aria-hidden="true" />
+                    <OJEye className="oj_eye" />
                     <Trans>Aperçu du document final</Trans>
                 </h3>
             </div>
@@ -166,7 +166,7 @@ const AnonymiseUi = (props) => {
                     </div>
         */}
 
-                    <div id="content_anon">
+                    <div id="content_anon" onClick={ () => document.querySelector(".selected")?.classList.remove("selected") }>
                         {
                             reactStringReplace(props.preparedText, /(.?\[ [^ \]]+ \].?)/g, (match, i) => (
                                 EntitySpan(match, i, props.entitySelect, props.entityModify)
