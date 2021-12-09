@@ -115,12 +115,14 @@ const IndexPage = () => {
         window.getSelection().empty();
         let newText = userSelected != '' ? userSelected : '';
 
+        let placeholder = PlaceholderManager.get('person', newkey)
         newEntities[newkey] = {
             'text': newText,
             'type':'person',
-            'placeholder': PlaceholderManager.get('person', newkey)
+            'placeholder': placeholder
         };
         setEntities(newEntities);
+        setTimeout(() => scroll2form(placeholder), 200);
         event.stopPropagation();
     }
 
@@ -142,13 +144,20 @@ const IndexPage = () => {
         }
         event.stopPropagation();
 
+        const obj = event.target.dataset;
         document.querySelectorAll(".selected")?.forEach(obj =>
             obj.classList.remove("selected")
         );
 
+        scroll2form(obj.entity);
         event.target.parentNode.classList.add('selected');
-        const obj = event.target.dataset;
-        const formObj = document.querySelector(`[data-entity="${obj.entity}"]`);
+    }
+
+    const scroll2form = (entity) => {
+        const formObj = document.querySelector(`[data-entity="${entity}"]`);
+        if (formObj == null) {
+            return
+        }
         formObj.scrollIntoView({
             behavior: 'smooth',
             block: 'nearest',
@@ -160,7 +169,6 @@ const IndexPage = () => {
             duration: 3000,
             iterations: 1
         });
-
         formObj.classList.add('selected');
     }
 
