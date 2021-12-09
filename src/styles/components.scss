@@ -96,16 +96,25 @@ form h2 {
 }
 
 #content_anon {
-    .anon {
-        background-color:#ffd400;
-
-        .modEntity {
-            display:none;
-        }
+    .modEntity {
+        display:none;
     }
 
-    .anon.selected {
-        background-color:#3ddef7;
+    .anon {
+        background-color:#ffd400;
+        border: 3px solid #ffd400;
+        padding:0 0 2px;
+        border-radius:4px;
+
+
+    }
+
+    .selected {
+        .anon {
+            background-color:#ffd400;
+            border-color:#000;
+        }
+
         .modEntity {
             display:inline;
         }
@@ -120,8 +129,16 @@ form h2 {
     }
 
     .modEntity:hover {
-        background-color:black;
-        color:#fff;
+        background-color:#fff;
+        color:red;
+
+        img svg {
+            color:red;
+        }
+    }
+
+    .small_arrow {
+        height:.9rem;
     }
 }
 

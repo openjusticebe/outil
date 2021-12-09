@@ -135,9 +135,11 @@ const IndexPage = () => {
         }
 
         var element = document.querySelector(".selected");
-        element.classList.remove("selected");
+        if (element != null) {
+            element.classList.remove("selected");
+        }
 
-        event.target.classList.add('selected');
+        event.target.parentNode.classList.add('selected');
         const obj = event.target.dataset;
         const formObj = document.querySelector(`[data-entity="${obj.entity}"]`);
         formObj.scrollIntoView({ behavior: 'smooth'});

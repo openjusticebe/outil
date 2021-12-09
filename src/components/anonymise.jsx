@@ -7,6 +7,8 @@ import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
 // IMG
 import OJBin from "../images/bin.svg";
 import OJEye from "../images/eye.svg";
+import ArrLeft from "../assets/svg/arrow_small_left.svg";
+import ArrRight from "../assets/svg/arrow_small_right.svg";
 
 const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
     <Form id={ id } className="ojform pseudoform mt-3 mb-2" data-entity={ placeholder }>
@@ -74,11 +76,11 @@ const EntityForm = ({entities, onRemove, onChange}) => (
  */
 
 const AppLeft = ({Callback, entity, op, value}) => (
-    <button class='modEntity' onClick={ (e) => {e.stopPropagation(); Callback(entity, op, value)} }>&lt;</button>
+    <button class='modEntity' onClick={ (e) => {e.stopPropagation(); Callback(entity, op, value)} }><ArrLeft/></button>
 )
 
 const AppRight = ({Callback, entity, op, value}) => (
-    <button class='modEntity' onClick={ (e) => {Callback(entity, op, value); e.stopPropagation()} }>&gt;</button>
+    <button class='modEntity' onClick={ (e) => {Callback(entity, op, value); e.stopPropagation()} }><ArrRight/></button>
 )
 
 const EntitySpan = (match, i, clickCallback, modCallback) => {
@@ -89,14 +91,18 @@ const EntitySpan = (match, i, clickCallback, modCallback) => {
     return (
         <>
         {leftChar}
-        <span
-            id={ placeholder + '-' + i}
-            className="anon"
-            data-entity={ placeholder }
-            onClick={ clickCallback }>
-            <AppLeft entity={ placeholder } Callback={ modCallback } value={leftChar} op="unshift"/>[<AppRight entity={ placeholder } Callback={modCallback} value="" op="shift"/>
-            &nbsp;{ placeholder }&nbsp;
-            <AppLeft entity={ placeholder } Callback={ modCallback } value="" op="pop"/>]<AppRight entity={ placeholder } Callback={modCallback} value={rightChar} op="push"/>
+        <span className="anon_container">
+            <AppLeft entity={ placeholder } Callback={ modCallback } value={leftChar} op="unshift"/>
+            <span
+                id={ placeholder + '-' + i}
+                className="anon"
+                data-entity={ placeholder }
+                onClick={ clickCallback }>
+                <AppRight entity={ placeholder } Callback={modCallback} value="" op="shift"/>
+                &nbsp;{ placeholder }&nbsp;
+                <AppLeft entity={ placeholder } Callback={ modCallback } value="" op="pop"/>
+            </span>
+            <AppRight entity={ placeholder } Callback={modCallback} value={rightChar} op="push"/>
         </span>
         {rightChar}
         </>
