@@ -10,8 +10,8 @@ import { isLoggedIn, getAuthHeader } from "../services/auth"
 import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
 // IMG
 import LoadGif from '../images/hourglass.gif';
-import OJKey from "../images/key.svg";
-import OJClip from "../images/paperclip.svg";
+import OJKey from "../assets/svg/key.svg";
+import OJClip from "../assets/svg/paperclip.svg";
 
 class SendUi extends React.Component {
 
@@ -224,7 +224,7 @@ class SendUi extends React.Component {
 
                         <fieldset className="p-3">
                             <legend>
-                                <img className="svg-icon" src={ OJKey } aria-hidden="true" />
+                                <OJKey aria-hidden="true" />&nbsp;
                                 <Trans>Propriétés du document</Trans>
                             </legend>
                             <Row>
@@ -310,7 +310,7 @@ class SendUi extends React.Component {
 
                         <fieldset className="p-3 mt-4 mb-4">
                             <legend>
-                                <img className="svg-icon" src={ OJClip } aria-hidden="true" />
+                                <OJClip aria-hidden="true" />&nbsp;
                                 <Trans>Liens et références vers d'autres textes</Trans>
                             </legend>
                             <Form.Group controlId="myform.docs">

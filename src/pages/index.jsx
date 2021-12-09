@@ -17,10 +17,10 @@ import SendUi from "../components/send";
 import '../styles/index.scss';
 import '../styles/components.scss';
 // IMG
-import OJCheck from "../images/check.svg";
-import OJSubscribe from "../images/inscription.svg";
-import OJUpload from "../images/upload.svg";
-import OJDown from "../images/arrow_down.svg";
+import OJCheck from "../assets/svg/check.svg";
+import OJSubscribe from "../assets/svg/inscription.svg";
+import OJUpload from "../assets/svg/upload.svg";
+import OJDown from "../assets/svg/arrow_down.svg";
 
 const IndexPage = () => {
     const {t} = useTranslation();
@@ -203,7 +203,7 @@ const IndexPage = () => {
                 <div className="row introtext pt-4">
                     <div className="col-sm text-center">
                         <h2>
-                            <img className="svg-icon" src={ OJCheck} aria-hidden="true" />
+                            <OJCheck aria-hidden="true" />&nbsp;
                             <Trans>Partage d'arrêts et jugements</Trans>
                         </h2>
                         { t('txt_index_share') } 
@@ -213,7 +213,7 @@ const IndexPage = () => {
                     </div>
                     <div className="col-sm text-center">
                         <h2>
-                            <img className="svg-icon" src={ OJSubscribe} aria-hidden="true" />
+                            <OJSubscribe aria-hidden="true" />&nbsp;
                             <Trans>Inscription</Trans>
                         </h2>
                         { t('txt_index_subscribe') }
@@ -223,7 +223,7 @@ const IndexPage = () => {
                     </div>
                     <div className="col-sm text-center">
                         <h2>
-                            <img className="svg-icon" src={ OJUpload} aria-hidden="true" />
+                            <OJUpload aria-hidden="true" />&nbsp;
                             <Trans>Chargement</Trans>
                         </h2>
                         <p>{ t('txt_index_upload') }
@@ -236,9 +236,11 @@ const IndexPage = () => {
                 </div>
                 <div className="row justify-content-md-center bridgetext">
                     <div>
-                        <img className="svg-icon" src={ OJDown } aria-hidden="true" />
+                        <OJDown aria-hidden="true'"/>
+                        &nbsp;
                         <Trans>Commencez à charger votre document</Trans>
-                        <img className="svg-icon" src={ OJDown } aria-hidden="true" />
+                        &nbsp;
+                        <OJDown aria-hidden="true'"/>
                     </div>
                 </div>
                 <div className="row">
