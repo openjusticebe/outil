@@ -5,11 +5,13 @@ import Button from 'react-bootstrap/Button';
 import PlaceholderManager from "../services/placeholder.js";
 import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
 // IMG
-import OJBin from "../images/bin.svg";
-import OJEye from "../images/eye.svg";
+import OJBin from "../assets/svg/bin.svg";
+import OJEye from "../assets/svg/eye.svg";
+import ArrLeft from "../assets/svg/arrow_small_left.svg";
+import ArrRight from "../assets/svg/arrow_small_right.svg";
 
 const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
-    <Form id={ id } className="ojform pseudoform mt-3 mb-2">
+    <Form id={ id } className="ojform pseudoform mt-3 mb-2" data-entity={ placeholder }>
         <div className="row">
             <div className="col-8 col-xl-12 mb-2" >
                 <Form.Control
@@ -32,13 +34,15 @@ const EntityRow = ({id, words, type, placeholder, onRemove, onChange}) => (
                 <Form.Control type="text" name="placeholder" value={ placeholder } onChange={ onChange }/>
             </div>
             <div className="col-1 col-xl-3">
-                <button onClick={ onRemove } className="btn term_remove">
-                    <img src={ OJBin } alt={ useTranslation('delete') } />
+                <button onClick={ onRemove } className="btn ojbin term_remove">
+                    <OJBin  alt={ useTranslation('delete') } />
                 </button>
             </div>
         </div>
     </Form>
 );
+
+const reactStringReplace = require('react-string-replace')
 
 
 const EntityForm = ({entities, onRemove, onChange}) => (
@@ -59,10 +63,51 @@ const EntityForm = ({entities, onRemove, onChange}) => (
         </div>
 );
 
-const prep_text = (text) => {
-    let prep_text = text.replace(/(\[ [^ \]]+ \])/g,'<span class="anon">$1</span>', text);
-    return prep_text;
-}
+
+/* The next bits allow live updating of a entity. It's a bit hacky : I'm still discovering the 
+ * ins and outs of this approach *
+ * FIXME: absolutely incompatible with multi-string text boxes */
+
+/* 4 ways to update :
+ * append left - unshift
+ * remove left - shift
+ * append right - push
+ * remove right - pop
+ */
+
+const AppLeft = ({Callback, entity, op, value}) => (
+    <button class='modEntity' onClick={ (e) => {e.stopPropagation(); Callback(entity, op, value)} }><ArrLeft/></button>
+)
+
+const AppRight = ({Callback, entity, op, value}) => (
+    <button class='modEntity' onClick={ (e) => {Callback(entity, op, value); e.stopPropagation()} }><ArrRight/></button>
+)
+
+const EntitySpan = (match, i, clickCallback, modCallback) => {
+    const placeholder = match.substring(match.indexOf('[') + 1, match.indexOf(']')).trim();
+    const leftChar = match.charAt(0) != '[' ? match.charAt(0) : '';
+    const rightChar = match.charAt(match.length - 1) != ']' ? match.charAt(match.length - 1) : '';
+
+    return (
+        <>
+        {leftChar}
+        <span className="anon_container">
+            <AppLeft entity={ placeholder } Callback={ modCallback } value={leftChar} op="unshift"/>
+            <span
+                id={ placeholder + '-' + i}
+                className="anon"
+                data-entity={ placeholder }
+                onClick={ clickCallback }>
+                <AppRight entity={ placeholder } Callback={modCallback} value="" op="shift"/>
+                &nbsp;{ placeholder }&nbsp;
+                <AppLeft entity={ placeholder } Callback={ modCallback } value="" op="pop"/>
+            </span>
+            <AppRight entity={ placeholder } Callback={modCallback} value={rightChar} op="push"/>
+        </span>
+        {rightChar}
+        </>
+    )
+};
 
 
 const AnonymiseUi = (props) => {
@@ -85,7 +130,7 @@ const AnonymiseUi = (props) => {
             </div>
             <div className="row justify-content-center pt-5">
                 <h3>
-                    <img className="oj_eye" src={ OJEye } aria-hidden="true" />
+                    <OJEye className="oj_eye" />
                     <Trans>Aperçu du document final</Trans>
                 </h3>
             </div>
@@ -116,9 +161,20 @@ const AnonymiseUi = (props) => {
                     <div className="oj-info text-white p-2">
                         {t('txt_legend_pseudo')}
                     </div>
-                    <div id="content_anon" dangerouslySetInnerHTML={{__html: prep_text(props.preparedText) }} />
+        {/*
+                    <div id="content_anon" dangerouslySetInnerHTML={{__html: prep_text(props.preparedText) }} >
+                    </div>
+        */}
+
+                    <div id="content_anon" onClick={ () => document.querySelector(".selected")?.classList.remove("selected") }>
+                        {
+                            reactStringReplace(props.preparedText, /(.?\[ [^ \]]+ \].?)/g, (match, i) => (
+                                EntitySpan(match, i, props.entitySelect, props.entityModify)
+                            ))
+                        }
                     </div>
                 </div>
+            </div>
         </div>
     );
 }

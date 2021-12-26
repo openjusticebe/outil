@@ -17,10 +17,10 @@ import SendUi from "../components/send";
 import '../styles/index.scss';
 import '../styles/components.scss';
 // IMG
-import OJCheck from "../images/check.svg";
-import OJSubscribe from "../images/inscription.svg";
-import OJUpload from "../images/upload.svg";
-import OJDown from "../images/arrow_down.svg";
+import OJCheck from "../assets/svg/check.svg";
+import OJSubscribe from "../assets/svg/inscription.svg";
+import OJUpload from "../assets/svg/upload.svg";
+import OJDown from "../assets/svg/arrow_down.svg";
 
 const IndexPage = () => {
     const {t} = useTranslation();
@@ -94,7 +94,13 @@ const IndexPage = () => {
         if (evId in newEntities) {
             delete newEntities[evId];
         }
+
+        document.querySelectorAll(".selected")?.forEach(obj =>
+            obj.classList.remove("selected")
+        );
+
         setEntities(newEntities);
+        event.stopPropagation();
     }
 
     const entityClean = async(event) => {
@@ -105,12 +111,19 @@ const IndexPage = () => {
         let len = Object.keys(entities).length + 1;
         let newkey = `entity#${len}`;
         let newEntities = {...entities};
+        let userSelected = window.getSelection().toString();
+        window.getSelection().empty();
+        let newText = userSelected != '' ? userSelected : '';
+
+        let placeholder = PlaceholderManager.get('person', newkey)
         newEntities[newkey] = {
-            'text':[],
+            'text': newText,
             'type':'person',
-            'placeholder': PlaceholderManager.get('person', newkey)
+            'placeholder': placeholder
         };
         setEntities(newEntities);
+        setTimeout(() => scroll2form(placeholder), 200);
+        event.stopPropagation();
     }
 
     const entityUpdate = async (event) => {
@@ -122,6 +135,73 @@ const IndexPage = () => {
         }
         
         setEntities(newEntities);
+        event.stopPropagation();
+    }
+    
+    const entitySelect = async (event) => {
+        if (event.target.tagName !== 'SPAN') {
+            return;
+        }
+        event.stopPropagation();
+
+        const obj = event.target.dataset;
+        document.querySelectorAll(".selected")?.forEach(obj =>
+            obj.classList.remove("selected")
+        );
+
+        scroll2form(obj.entity);
+        event.target.parentNode.classList.add('selected');
+    }
+
+    const scroll2form = (entity) => {
+        const formObj = document.querySelector(`[data-entity="${entity}"]`);
+        if (formObj == null) {
+            return
+        }
+        formObj.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+        });
+        formObj.animate ([
+            {backgroundColor: '#5e81f4'},
+            {backgroundColor: 'transparent'}
+        ], {
+            duration: 3000,
+            iterations: 1
+        });
+        formObj.classList.add('selected');
+    }
+
+    const entityModify = (entity, operation, value) => {
+        const formObj = document.querySelector(`[data-entity="${entity}"]`);
+        let id = formObj.id;
+
+        let newEntities = {...entities};
+
+        let userSelected = window.getSelection().toString();
+        window.getSelection().empty();
+
+        let newValue = userSelected != '' ? userSelected : value;
+
+        if (id in newEntities) {
+            let prevValue = newEntities[id]['text'].split('');
+            switch(operation) {
+                case 'unshift':
+                    prevValue.unshift(newValue);
+                    break;
+                case 'shift' :
+                    prevValue.shift();
+                    break;
+                case 'pop':
+                    prevValue.pop();
+                    break;
+                case 'push':
+                    prevValue.push(newValue);
+                    break
+                }
+            newEntities[id]['text'] = prevValue.join('');
+            setEntities(newEntities);
+        }
     }
 
     return (
@@ -131,7 +211,7 @@ const IndexPage = () => {
                 <div className="row introtext pt-4">
                     <div className="col-sm text-center">
                         <h2>
-                            <img className="svg-icon" src={ OJCheck} aria-hidden="true" />
+                            <OJCheck aria-hidden="true" />&nbsp;
                             <Trans>Partage d'arrêts et jugements</Trans>
                         </h2>
                         { t('txt_index_share') } 
@@ -141,7 +221,7 @@ const IndexPage = () => {
                     </div>
                     <div className="col-sm text-center">
                         <h2>
-                            <img className="svg-icon" src={ OJSubscribe} aria-hidden="true" />
+                            <OJSubscribe aria-hidden="true" />&nbsp;
                             <Trans>Inscription</Trans>
                         </h2>
                         { t('txt_index_subscribe') }
@@ -151,7 +231,7 @@ const IndexPage = () => {
                     </div>
                     <div className="col-sm text-center">
                         <h2>
-                            <img className="svg-icon" src={ OJUpload} aria-hidden="true" />
+                            <OJUpload aria-hidden="true" />&nbsp;
                             <Trans>Chargement</Trans>
                         </h2>
                         <p>{ t('txt_index_upload') }
@@ -164,9 +244,11 @@ const IndexPage = () => {
                 </div>
                 <div className="row justify-content-md-center bridgetext">
                     <div>
-                        <img className="svg-icon" src={ OJDown } aria-hidden="true" />
+                        <OJDown aria-hidden="true'"/>
+                        &nbsp;
                         <Trans>Commencez à charger votre document</Trans>
-                        <img className="svg-icon" src={ OJDown } aria-hidden="true" />
+                        &nbsp;
+                        <OJDown aria-hidden="true'"/>
                     </div>
                 </div>
                 <div className="row">
@@ -182,6 +264,8 @@ const IndexPage = () => {
                             entityAdd = { entityAdd }
                             entityClean = { entityClean }
                             entityChange = { entityUpdate }
+                            entitySelect = { entitySelect }
+                            entityModify = { entityModify }
                             hashKey={'anonymise'} />
                     <SendUi uploadedText = { parsedText } hashKey={'send'} />
                             

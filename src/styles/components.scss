@@ -17,6 +17,7 @@ form h2 {
 }
 
 .ojform {
+    padding:.2rem;
 }
 
 .ojform input, .ojform select, .ojform textarea {
@@ -94,8 +95,58 @@ form h2 {
     overflow:scroll;
 }
 
-#content_anon .anon {
-    background-color:#ffd400;
+#content_anon {
+    z-index:0;
+    .modEntity {
+        display:none;
+    }
+
+    .anon {
+        background-color:#ffd400;
+        border: 3px solid #f9f7f7;
+        padding:0 0 2px;
+        border-radius:4px;
+    }
+
+    .anon_container {
+        z-index:1;
+    }
+
+
+    .selected {
+        z-index:100;
+        position:relative;
+
+        .anon {
+            background-color:#ffd400;
+            border-color:#000;
+        }
+
+        .modEntity {
+            display:inline;
+        }
+
+
+        .modEntity:hover svg {
+            color:#f33;
+
+        }
+    }
+
+    .modEntity {
+        cursor:pointer;
+        text-decoration:none;
+        color:black;
+        background:none;
+        border:none;
+        svg {
+            height:1rem;
+        }
+}
+
+
+    .small_arrow {
+    }
 }
 
 .term_remove {
@@ -134,6 +185,12 @@ form h2 {
 
 .anonOpts form {
     margin-bottom:.3rem;
+    border: 2px solid transparent;
+}
+
+.anonOpts form.selected {
+    border: 2px solid #5e81f4;
+    border-radius:4px;
 }
 
 

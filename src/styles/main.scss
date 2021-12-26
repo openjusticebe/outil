@@ -51,10 +51,12 @@ body {
 
 }
 
+/*
 .svg-icon {
     margin:0;
     padding:0 9px 0 0;
 }
+*/
 
 .btn-ojmain {
     color: #fff;
@@ -145,4 +147,9 @@ body {
     position:sticky;
     top:0;
     z-index:100;
+}
+
+.ojbin {
+    padding:0;
+    margin:0;
 }

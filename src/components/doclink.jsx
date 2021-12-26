@@ -3,7 +3,7 @@ import { Row, Col} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
 // IMG
-import OJBin from "../images/bin.svg";
+import OJBin from "../assets/svg/bin.svg";
 
 // Link : https://itnext.io/building-a-dynamic-controlled-form-in-react-together-794a44ee552c
 // https://itnext.io/how-to-build-a-dynamic-controlled-form-with-react-hooks-2019-b39840f75c4f
@@ -69,8 +69,8 @@ const DocLinks = ( { docs, docDel, docChange } ) => {
                     </Form.Group>
                 </Col>
                 <Col className="col-2 d-flex">
-                    <button type="button" className="btn term_remove align-self-end ml-auto" onClick={ () => docDel( idx ) }>
-                        <img src={ OJBin } alt='Delete' />
+                    <button type="button" className="btn ojbin term_remove align-self-end ml-auto" onClick={ () => docDel( idx ) }>
+                        <OJBin alt='Delete' />
                     </button>
                 </Col>
             </Row>
