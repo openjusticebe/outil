@@ -7,7 +7,7 @@ import { Row, Col} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import {YEARS, COURTS} from '../services/data';
 import { isLoggedIn, getAuthHeader } from "../services/auth"
-import {Link, Trans, useTranslation} from 'gatsby-plugin-react-i18next';
+import {Link, Trans, useTranslation, I18nextContext} from 'gatsby-plugin-react-i18next';
 // IMG
 import LoadGif from '../images/hourglass.gif';
 import OJKey from "../assets/svg/key.svg";
@@ -17,7 +17,7 @@ class SendUi extends React.Component {
 
     constructor(props) {
         super(props);
-        this.docBlank = {kind:'eli', link:'', label:''};
+        this.docBlank = {kind:'eli', link:'', label:'', term:''};
         this.state = {
             country : 'BE',
             court: 'RSCE',
@@ -25,35 +25,51 @@ class SendUi extends React.Component {
             identifier: '',
             text: '',
             lang: 'NL',
+            UIlang: 'NL',
             appeal: 'nodata',
             userkey: '',
             waiting: false,
             error:false,
             labels:[],
+            terms:[],
             labelSuggestions: [],
+            termSuggestions: [],
             docLinks: [],
             validated: false,
             // docLinks: [{...this.docBlank}],
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+
         this.labelsKeyDown = this.labelsKeyDown.bind(this);
         this.labelRemove = this.labelRemove.bind(this);
         this.labelSelect = this.labelSelect.bind(this);
+
+        this.termsKeyDown = this.termsKeyDown.bind(this);
+        this.termRemove = this.termRemove.bind(this);
+        this.termSelect = this.termSelect.bind(this);
+
         this.docAdd = this.docAdd.bind(this);
         this.docDel = this.docDel.bind(this);
         this.labelInput = '';
         this.labelController = false;
+        this.termInput = '';
+        this.termController = false;
+
+
+
     }
 
     static getDerivedStateFromProps(props, state) {
         return {
-            text : props.uploadedText
+            text : props.uploadedText,
+            UIlang: props.language
         };
     }
 
     componentDidMount() {
         this.labelController = new AbortController();
+        this.termController = new AbortController();
     }
 
     handleChange(event) {
@@ -62,7 +78,7 @@ class SendUi extends React.Component {
         const cname = event.target.className.split(' ')[0]; 
         if (name === 'identifier') {
             change[name] = event.target.value + '.OJ';
-        } else if ( ['kind', 'link', 'label'].includes(cname) ) {
+        } else if ( ['kind', 'link', 'label', 'term'].includes(cname) ) {
             let docLinks = [...this.state.docLinks];
             docLinks[event.target.dataset.id][cname] = event.target.value;
             change['docLinks'] = docLinks;
@@ -95,6 +111,7 @@ class SendUi extends React.Component {
             'text' : this.state.text,
             'lang' : this.state.lang,
             'labels' : this.state.labels,
+            'terms' : this.state.terms,
             'appeal' : this.state.appeal, 
             'user_key' : this.state.userkey,
             'doc_links' : this.state.docLinks,
@@ -129,6 +146,7 @@ class SendUi extends React.Component {
             });
     }
 
+    // Handle Labels
     labelsKeyDown(event) {
         // Abort running query, if any
 
@@ -190,6 +208,69 @@ class SendUi extends React.Component {
 
         this.labelInput.value = null;
     }
+
+
+    // Handle terms
+    termsKeyDown(event) {
+        // Abort running query, if any
+        const context = I18nextContext;
+
+        if (this.termController !== false)
+            this.termController.abort();
+        this.termController = new AbortController();
+        const val = event.target.value;
+        if ((event.key === 'Enter' || event.key === ' ') && val) {
+          event.preventDefault();
+        } else if (event.key === 'Backspace' && !val) {
+          this.termRemove(this.state.terms.length - 1);
+        }
+
+        const { signal } = this.termController;
+        const str = val + event.key;
+
+        //FIXME: Suboptimal, check websockets or another protocol
+        fetch(`${process.env.GATSBY_VOC_API}/suggest/${str}?lang=${this.state.UIlang}`, {
+            method: 'get',
+            signal: signal,
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }})
+            .then(response => response.json())
+            .then(termList => {
+                if (termList.hasOwnProperty('data')) {
+                    console.log('Got Terms:', termList);
+                    this.setState({ termSuggestions : termList['data'] });
+                } else {
+                    console.log('Failed recovering suggestions : ', termList);
+                }
+            })
+            .catch(error => console.log(error) );
+    }
+
+    termRemove(index) {
+        const newterms = [ ...this.state.terms ];
+        newterms.splice(index, 1);
+
+        // Call the defined function setterms which will replace terms with the new value.
+        this.setState({ terms: newterms });
+    }
+
+    termSelect(event) {
+        const uri = event.target.dataset.uri;
+        const key = event.target.dataset.key;
+
+        if (this.state.terms.find(term => term.uri === uri)) {
+            this.setState({ termSuggestions: [] });
+        } else {
+            const newterms = [ ...this.state.terms, this.state.termSuggestions[key]];
+            this.setState({ terms:  newterms, termSuggestions: [] });
+        }
+
+        this.termInput.value = null;
+    }
+
+
 
     docAdd() {
         this.setState({ docLinks: [...this.state.docLinks, {...this.docBlank}]});
@@ -282,7 +363,7 @@ class SendUi extends React.Component {
                             </Form.Group>
 
                             <Form.Group controlId="myform.labels">
-                                <Form.Label><Trans>Labels</Trans> (<Trans>catégories</Trans>)</Form.Label>
+                                <Form.Label><Trans>Labels</Trans> (<Trans>libres</Trans>)</Form.Label>
                                 <div className="text-muted mb-1">COVID-19, anatocisme, ...</div>
                                 <ul className="labels-list">
                                   { this.state.labels.map((label, i) => (
@@ -305,6 +386,32 @@ class SendUi extends React.Component {
                                   </li>
                                 </ul>
                             </Form.Group>
+
+                            <Form.Group controlId="myform.terms">
+                                <Form.Label><Trans>Mot-clé</Trans> (<Trans>classification, arborescence</Trans>)</Form.Label>
+                                <ul className="terms-list">
+                                  { this.state.terms.map((term, i) => (
+                                      <li key={i} className="bg-dark text-white">
+                                          {term.label_parent} -> {term.label}
+                                          <button type="button" onClick={ () => { this.termRemove(i);} }>+</button>
+                                      </li>
+                                  ))}
+                                  <li className="terms-input">
+                                      <input type="text" onKeyDown={ this.termsKeyDown } ref={c => { this.termInput = c; }} />
+                                      { this.state.termSuggestions.length > 0 &&
+                                      <ul className="subterms">
+                                          { this.state.termSuggestions.map((term, i) => (
+                                              <li key={i} data-uri={term.uri} data-key={i} className="bg-light" onClick={ this.termSelect }>
+                                              {term.label_parent} -> {term.label}
+                                              </li>
+                                          ))}
+                                      </ul>
+                                      }
+                                  </li>
+                                </ul>
+                            </Form.Group>
+
+
 
                         </fieldset>
 
