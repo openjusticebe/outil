@@ -113,7 +113,7 @@ class SendUi extends React.Component {
             'text' : this.state.text,
             'lang' : this.state.lang,
             'labels' : this.state.labels,
-            'terms' : this.state.terms,
+            'terms' : this.state.terms.map(({ uri }) => uri),
             'appeal' : this.state.appeal, 
             'user_key' : this.state.userkey,
             'doc_links' : this.state.docLinks,
