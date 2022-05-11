@@ -322,6 +322,16 @@ form h2 {
     width:20rem;
     padding:1rem;
 }
+ .terms-list .p {
+    color: $grey_1;
+    text-transform:lowercase;
+    display:block;
+}
+
+ .terms-list .c {
+    text-transform:lowercase;
+    font-weight:bold;
+}
 
 .subterms {
     display: flex; 
@@ -350,6 +360,16 @@ form h2 {
     border-color:black;
 }
 
+ .subterms .p {
+    color: $grey_1;
+    text-transform:lowercase;
+    display:block;
+}
+
+ .subterms .c {
+    text-transform:lowercase;
+    font-weight:bold;
+}
 
 
 /*********** Send and anon form

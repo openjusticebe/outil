@@ -12,6 +12,8 @@ import {Link, Trans, useTranslation, I18nextContext} from 'gatsby-plugin-react-i
 import LoadGif from '../images/hourglass.gif';
 import OJKey from "../assets/svg/key.svg";
 import OJClip from "../assets/svg/paperclip.svg";
+import OJChild from "../assets/svg/arrow_child.svg";
+import OJChild2 from "../assets/svg/arrow_child2.svg";
 
 class SendUi extends React.Component {
 
@@ -124,6 +126,7 @@ class SendUi extends React.Component {
         if (isLoggedIn()) {
             headers_obj["Authorization"] = getAuthHeader()
         }
+
 
         // Get api response
         // fetch(`https://anon-api.openjustice.be/run`, {
@@ -257,8 +260,9 @@ class SendUi extends React.Component {
     }
 
     termSelect(event) {
-        const uri = event.target.dataset.uri;
-        const key = event.target.dataset.key;
+        // TODO : target should be closest parent LI
+        const uri = event.target.closest('li').dataset.uri;
+        const key = event.target.closest('li').dataset.key;
 
         if (this.state.terms.find(term => term.uri === uri)) {
             this.setState({ termSuggestions: [] });
@@ -291,6 +295,7 @@ class SendUi extends React.Component {
                         <span className="page-total">/3</span>
                     </div>
                     <div>
+    color: $grey_1;
                         <h2><Trans>Définir les données et envoyer</Trans></h2>
                     </div>
                 </div>
@@ -392,7 +397,9 @@ class SendUi extends React.Component {
                                 <ul className="terms-list">
                                   { this.state.terms.map((term, i) => (
                                       <li key={i} className="bg-dark text-white">
-                                          {term.label_parent} -> {term.label}
+                                          <span class="p mr-1">{term.label_parent}</span>
+                                          <OJChild2 class="mt-1" aria-hidden="true" />&nbsp;
+                                          <span class="c">{term.label}</span>
                                           <button type="button" onClick={ () => { this.termRemove(i);} }>+</button>
                                       </li>
                                   ))}
@@ -402,7 +409,9 @@ class SendUi extends React.Component {
                                       <ul className="subterms">
                                           { this.state.termSuggestions.map((term, i) => (
                                               <li key={i} data-uri={term.uri} data-key={i} className="bg-light" onClick={ this.termSelect }>
-                                              {term.label_parent} -> {term.label}
+                                              <span class="p mr-1">{term.label_parent}</span>
+                                              <OJChild aria-hidden="true" />&nbsp;
+                                              <span class="c">{term.label}</span>
                                               </li>
                                           ))}
                                       </ul>
