@@ -85,8 +85,9 @@ class UploadUi extends React.Component {
             }
             I = I - 1;
                 
-            console.log('Ref is ',$ref);
+            console.log('Ref is ', ref);
             const url = `${process.env.GATSBY_UPLOAD_API}/extract/status?ref=${ref}`;
+            console.log('Fetchin url', url);
             fetch(url)
                 .then( response => response.json() )
                 .then( data => {
