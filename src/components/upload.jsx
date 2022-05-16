@@ -93,7 +93,7 @@ class UploadUi extends React.Component {
                 .then( response => response.json() )
                 .then( data => {
                     if (data['status'] === 'empty') {
-                        if (obj.state.page_current === obj.state.pages_total) {
+                        if (obj.state.page_current == obj.state.pages_total) {
                             obj.setState({ parse_waiting: false });
                             // No more pages expected, just quit !
                             return;
@@ -181,7 +181,6 @@ class UploadUi extends React.Component {
                 });
             }
 
-            console.log('set page state to', newPage);
             this.setState({
                 page_current: newPage,
                 text: newTextArray.join(''),
