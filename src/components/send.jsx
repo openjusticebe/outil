@@ -132,6 +132,7 @@ class SendUi extends React.Component {
         // fetch(`https://anon-api.openjustice.be/run`, {
         fetch(`${process.env.GATSBY_DATA_API}/create`, {
             method: 'POST',
+            mode:'cors',
             headers: headers_obj,
             body: JSON.stringify(query),
             }).then(response => response.json())

@@ -97,6 +97,8 @@ class UploadUi extends React.Component {
                             obj.setState({ parse_waiting: false });
                             // No more pages expected, just quit !
                             return;
+                        } else {
+                            console.log('Status empty, conflicting page numbers. Current:', obj.state.page_current,'Total:', obj.state.pages_total);
                         }
                         setTimeout(() => F(F,I), 2000);
                     }
