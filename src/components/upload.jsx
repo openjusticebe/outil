@@ -181,6 +181,7 @@ class UploadUi extends React.Component {
                 });
             }
 
+            console.log('set page state to', newPage);
             this.setState({
                 page_current: newPage,
                 text: newTextArray.join(''),
