@@ -55,7 +55,12 @@ class UploadUi extends React.Component {
         });
     }
 
-    handleReference(ref) {
+    handleReference(ref, msg=false) {
+        if (ref == false) {
+            console.log('uploader error', msg)
+            return;
+        }
+
         this.setState({
             upload_ref: ref,
             parse_waiting: true,
