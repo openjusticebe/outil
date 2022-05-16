@@ -124,7 +124,10 @@ class UploadUi extends React.Component {
                         setTimeout(() => F(F, I), 1000);
                     }
                     return
-                })
+                }).catch(function (error) {
+                    console.log('Request failed', error);
+                    console.log('Original URL:', url.toString());
+                });
             }
         setTimeout(() => fun(fun, 1000), 1000);
     }
