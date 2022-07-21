@@ -23,7 +23,7 @@ ENV GATSBY_UPLOAD_API=${GATSBY_UPLOAD_API} \
     GATSBY_SITE_URL=${GATSBY_SITE_URL}
 
 COPY package.json yarn.lock ./
-RUN yarn
+RUN yarn install --ignore-engines
 
 COPY ./src ./src
 COPY ./static ./static
