@@ -1,7 +1,7 @@
 // JS
 import React, { useEffect, useState } from "react";
 import { graphql } from 'gatsby';
-import {Link, Trans, useTranslation, useI18next} from 'gatsby-plugin-react-i18next';
+import {Link, Trans, useTranslation, useI18next, I18nextContext} from 'gatsby-plugin-react-i18next';
 import { useQueryParam, StringParam } from "use-query-params";
 import { getUser, isLoggedIn, logout, logcheck } from "../services/auth"
 import parseText from "../services/parser.js";
@@ -31,6 +31,8 @@ const IndexPage = () => {
     const [rawText, setRawText] = useState('...');
     const [parsedText, setParsedText] = useState('...');
     const [entities, setEntities] = useState({});
+    const context = React.useContext(I18nextContext);
+    const current_language = context.language;
 
     useEffect(() => {
         switch(auth) {
@@ -267,7 +269,10 @@ const IndexPage = () => {
                             entitySelect = { entitySelect }
                             entityModify = { entityModify }
                             hashKey={'anonymise'} />
-                    <SendUi uploadedText = { parsedText } hashKey={'send'} />
+                    <SendUi
+                            uploadedText = { parsedText }
+                            language={ current_language }
+                            hashKey={'send'} />
                             
                 </div>
             </div>

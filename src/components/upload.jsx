@@ -55,7 +55,12 @@ class UploadUi extends React.Component {
         });
     }
 
-    handleReference(ref) {
+    handleReference(ref, msg=false) {
+        if (ref == false) {
+            console.log('uploader error', msg)
+            return;
+        }
+
         this.setState({
             upload_ref: ref,
             parse_waiting: true,
@@ -80,15 +85,20 @@ class UploadUi extends React.Component {
             }
             I = I - 1;
                 
-            const url = `${process.env.GATSBY_UPLOAD_API}/extract/status?ref=${ref}`;
+            const url = new URL(`${process.env.GATSBY_UPLOAD_API}/extract/status`);
+            const payload = {"refx" : ref};
+            url.search = new URLSearchParams(payload).toString();
+
             fetch(url)
                 .then( response => response.json() )
                 .then( data => {
                     if (data['status'] === 'empty') {
-                        if (obj.state.page_current === obj.state.pages_total) {
+                        if (obj.state.page_current == obj.state.pages_total) {
                             obj.setState({ parse_waiting: false });
                             // No more pages expected, just quit !
                             return;
+                        } else {
+                            console.log('Status empty, conflicting page numbers. Current:', obj.state.page_current,'Total:', obj.state.pages_total);
                         }
                         setTimeout(() => F(F,I), 2000);
                     }
@@ -115,7 +125,10 @@ class UploadUi extends React.Component {
                         setTimeout(() => F(F, I), 1000);
                     }
                     return
-                })
+                }).catch(function (error) {
+                    console.log('Request failed', error);
+                    console.log('Original URL:', url.toString());
+                });
             }
         setTimeout(() => fun(fun, 1000), 1000);
     }
